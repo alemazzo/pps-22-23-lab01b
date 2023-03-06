@@ -63,4 +63,13 @@ public class LogicsTest {
         assertFalse(this.logics.hit(1, 2));
         assertTrue(this.logics.hasKnight(1, 2));
     }
+
+    @Test
+    void testKnightCanHitPawn() {
+        final var knightPosition = new Pair<>(0, 0);
+        final var pawnPosition = new Pair<>(1, 2);
+        this.logics = new LogicsImpl(SIZE, pawnPosition, knightPosition);
+        assertTrue(this.logics.hit(pawnPosition.getX(), pawnPosition.getY()));
+        assertTrue(this.logics.hasKnight(pawnPosition.getX(), pawnPosition.getY()));
+    }
 }
