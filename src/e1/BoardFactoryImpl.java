@@ -25,4 +25,12 @@ public class BoardFactoryImpl implements BoardFactory {
                 this.pieceFactory.createKnight(Position.random(boardSize))
         ), boardSize);
     }
+
+    @Override
+    public Board createBoardWithPawnAndKnightAt(Position pawnPosition, Position knightPosition, int boardSize) {
+        return this.createBoardWithPieces(Set.of(
+                this.pieceFactory.createPawn(pawnPosition),
+                this.pieceFactory.createKnight(knightPosition)
+        ), boardSize);
+    }
 }

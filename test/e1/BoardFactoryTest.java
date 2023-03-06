@@ -55,4 +55,40 @@ public class BoardFactoryTest {
         assertEquals(1, pawnCount);
         assertEquals(1, knightCount);
     }
+
+
+    @Test
+    void testCanCreateBoardWithPawnAndKnightAtPositions() {
+        final int boardSize = 8;
+        final Position pawnPosition = new Position(2, 0);
+        final Position knightPosition = new Position(0, 1);
+
+        final var board = this.boardFactory.createBoardWithPawnAndKnightAt(pawnPosition, knightPosition, boardSize);
+        assertEquals(boardSize, board.size());
+        assertEquals(2, board.pieces().size());
+
+        final var pawnCount = board.pieces().stream()
+                .filter(p -> p.getType() == PieceType.PAWN)
+                .count();
+
+        final var knightCount = board.pieces().stream()
+                .filter(p -> p.getType() == PieceType.KNIGHT)
+                .count();
+
+        assertEquals(1, pawnCount);
+        assertEquals(1, knightCount);
+
+        final var pawn = board.pieces().stream()
+                .filter(p -> p.getType() == PieceType.PAWN)
+                .findFirst()
+                .orElseThrow();
+
+        final var knight = board.pieces().stream()
+                .filter(p -> p.getType() == PieceType.KNIGHT)
+                .findFirst()
+                .orElseThrow();
+
+        assertEquals(pawnPosition, pawn.getPosition());
+        assertEquals(knightPosition, knight.getPosition());
+    }
 }

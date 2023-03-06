@@ -2,31 +2,29 @@ package e1;
 
 import e1.movement.Position;
 
-import java.util.Set;
-import java.util.stream.Stream;
-
 public class LogicsImpl implements Logics {
-    private final PieceFactory pieceFactory = new PieceFactoryImpl();
+    private final BoardFactory factory = new BoardFactoryImpl();
     private final Board board;
     private final Piece knight;
 
     public LogicsImpl(int size) {
-        final var pawnPosition = Position.random(size);
-        final var knightPosition = Stream.generate(() -> Position.random(size))
-                .filter(position -> !position.equals(pawnPosition))
+        this.board = this.factory.createRandomBoardWithPawnAndKnight(size);
+        this.knight = this.board.pieces().stream()
+                .filter(piece -> piece.getType() == PieceType.KNIGHT)
                 .findFirst()
                 .orElseThrow();
-        this.knight = this.pieceFactory.createKnight(knightPosition);
-        this.board = new BoardImpl(Set.of(
-                this.pieceFactory.createPawn(pawnPosition),
-                this.knight
-        ), size);
     }
 
     public LogicsImpl(int size, Position pawnPosition, Position knightPosition) {
-        final var pawn = this.pieceFactory.createPawn(pawnPosition);
-        this.knight = this.pieceFactory.createKnight(knightPosition);
-        this.board = new BoardImpl(Set.of(pawn, this.knight), size);
+        this.board = this.factory.createBoardWithPawnAndKnightAt(
+                pawnPosition,
+                knightPosition,
+                size
+        );
+        this.knight = this.board.pieces().stream()
+                .filter(piece -> piece.getType() == PieceType.KNIGHT)
+                .findFirst()
+                .orElseThrow();
     }
 
     @Override
@@ -37,10 +35,8 @@ public class LogicsImpl implements Logics {
         }
 
         final var moves = this.knight.getPossibleMoves(this.board.size());
-        System.out.println(moves);
 
         if (moves.contains(position)) {
-            System.out.println("Knight moved to " + position);
             final boolean captured = this.board.getPieceAt(position).isPresent();
             this.knight.setPosition(position);
             return captured;

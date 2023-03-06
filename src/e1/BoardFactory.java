@@ -1,5 +1,7 @@
 package e1;
 
+import e1.movement.Position;
+
 import java.util.Set;
 
 public interface BoardFactory {
@@ -8,4 +10,6 @@ public interface BoardFactory {
     Board createBoardWithPieces(Set<Piece> pieces, int boardSize);
 
     Board createRandomBoardWithPawnAndKnight(int boardSize);
+
+    Board createBoardWithPawnAndKnightAt(Position pawnPosition, Position knightPosition, int boardSize);
 }
