@@ -42,6 +42,14 @@ public class BoardTest {
         this.board.addPiece(piece);
         assertEquals(3, this.board.pieces().size());
     }
+
+    @Test
+    void testCanRemovePieceFromBoard() {
+        final var piece = this.pieceFactory.createPawn(PAWN_POSITION);
+        this.board.removePiece(piece);
+        assertEquals(1, this.board.pieces().size());
+    }
+
     @Test
     void testCanRetrievePieceAtPosition() {
         final var piece = this.board.getPieceAt(PAWN_POSITION);

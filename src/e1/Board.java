@@ -17,4 +17,6 @@ public interface Board {
     boolean hasPieceTypeAt(Position pawnPosition, PieceType pawn);
 
     boolean addPiece(Piece piece);
+
+    boolean removePiece(Piece piece);
 }
