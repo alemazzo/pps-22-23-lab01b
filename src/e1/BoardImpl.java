@@ -1,26 +1,23 @@
 package e1;
 
+import e1.movement.Position;
+
 import java.util.Collections;
+import java.util.Optional;
 import java.util.Set;
 
-public class BoardImpl implements Board {
-
-    private final Set<Piece> pieces;
-    private final int size;
-
-    public BoardImpl(Set<Piece> pieces, int size) {
-        this.pieces = pieces;
-        this.size = size;
-    }
-
+public record BoardImpl(Set<Piece> pieces, int size) implements Board {
 
     @Override
-    public int getSize() {
-        return this.size;
-    }
-
-    @Override
-    public Set<Piece> getPieces() {
+    public Set<Piece> pieces() {
         return Collections.unmodifiableSet(this.pieces);
     }
+
+    @Override
+    public Optional<Piece> getPieceAt(Position position) {
+        return this.pieces.stream()
+                .filter(piece -> piece.getPosition().equals(position))
+                .findFirst();
+    }
+
 }
