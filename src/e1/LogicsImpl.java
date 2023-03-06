@@ -2,51 +2,48 @@ package e1;
 
 import e1.movement.Position;
 
-import java.util.Random;
+import java.util.Set;
+import java.util.stream.Stream;
 
 public class LogicsImpl implements Logics {
-
     private final PieceFactory pieceFactory = new PieceFactoryImpl();
-    private final Piece pawn;
-	private final Piece knight;
-    private final Random random = new Random();
-    private final int size;
+    private final Board board;
+    private final Piece knight;
 
     public LogicsImpl(int size) {
-        this.size = size;
-        this.pawn = this.pieceFactory.createPawn(this.randomPosition());
-        this.knight = this.pieceFactory.createKnight(this.randomEmptyPosition());
+        final var pawnPosition = Position.random(size);
+        final var knightPosition = Stream.generate(() -> Position.random(size))
+                .filter(position -> !position.equals(pawnPosition))
+                .findFirst()
+                .orElseThrow();
+        this.knight = this.pieceFactory.createKnight(knightPosition);
+        this.board = new BoardImpl(Set.of(
+                this.pieceFactory.createPawn(pawnPosition),
+                this.knight
+        ), size);
     }
 
-    public LogicsImpl(int size, Pair<Integer, Integer> pawn, Pair<Integer, Integer> knight) {
-        this.size = size;
-        this.pawn = this.pieceFactory.createPawn(new Position(pawn.getX(), pawn.getY()));
-        this.knight = this.pieceFactory.createKnight(new Position(knight.getX(), knight.getY()));
-    }
-
-    private Position randomPosition() {
-        return new Position(this.random.nextInt(size), this.random.nextInt(size));
-    }
-
-    private Position randomEmptyPosition() {
-        final var randomPosition = this.randomPosition();
-        return this.pawn != null &&
-                this.pawn.getPosition().equals(randomPosition) ?
-                randomEmptyPosition() : randomPosition;
+    public LogicsImpl(int size, Position pawnPosition, Position knightPosition) {
+        final var pawn = this.pieceFactory.createPawn(pawnPosition);
+        this.knight = this.pieceFactory.createKnight(knightPosition);
+        this.board = new BoardImpl(Set.of(pawn, this.knight), size);
     }
 
     @Override
-    public boolean hit(int row, int col) {
+    public boolean hit(final Position position) {
 
-        if (row < 0 || col < 0 || row >= this.size || col >= this.size) {
+        if (!position.isValid(this.board.size())) {
             throw new IndexOutOfBoundsException();
         }
 
-        final var moves = this.knight.getPossibleMoves(this.size);
+        final var moves = this.knight.getPossibleMoves(this.board.size());
+        System.out.println(moves);
 
-        if (moves.contains(new Position(row, col))) {
-            this.knight.setPosition(new Position(row, col));
-            return this.pawn.getPosition().equals(this.knight.getPosition());
+        if (moves.contains(position)) {
+            System.out.println("Knight moved to " + position);
+            final boolean captured = this.board.getPieceAt(position).isPresent();
+            this.knight.setPosition(position);
+            return captured;
         }
 
         return false;
@@ -54,12 +51,13 @@ public class LogicsImpl implements Logics {
     }
 
     @Override
-    public boolean hasKnight(int row, int col) {
-        return this.knight.getPosition().equals(new Position(row, col));
+    public boolean hasKnight(final Position position) {
+        return this.knight.getPosition().equals(position);
     }
 
     @Override
-    public boolean hasPawn(int row, int col) {
-        return this.pawn.getPosition().equals(new Position(row, col));
+    public boolean hasPawn(final Position position) {
+        return this.board.getPieceAt(position).isPresent() &&
+                this.board.getPieceAt(position).get().getType() == PieceType.PAWN;
     }
 }

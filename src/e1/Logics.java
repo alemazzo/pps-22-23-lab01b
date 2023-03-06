@@ -1,27 +1,29 @@
 package e1;
 
-public interface Logics{
-    
+import e1.movement.Position;
+
+public interface Logics {
+
     /**
      * attempt to move Knight on position row,col, if possible
-     * 
+     *
      * @param row
      * @param col
-     * @return whether the pawn has been hit 
+     * @return whether the pawn has been hit
      */
-    boolean hit(int row, int col);
-    
+    boolean hit(Position position);
+
     /**
      * @param row
      * @param col
      * @return whether position row,col has the knight
      */
-    boolean hasKnight(int row, int col);
-    
+    boolean hasKnight(Position position);
+
     /**
      * @param row
      * @param col
      * @return whether position row,col has the pawn
      */
-    boolean hasPawn(int row, int col);
+    boolean hasPawn(Position position);
 }

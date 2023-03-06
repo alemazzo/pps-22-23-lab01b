@@ -1,9 +1,8 @@
 package e1;
 
+import e1.movement.Position;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -21,7 +20,7 @@ public class LogicsTest {
     private Pair<Integer, Integer> getPawnPosition() {
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
-                if (logics.hasPawn(i, j)) {
+                if (logics.hasPawn(new Position(i, j))) {
                     return new Pair<>(i, j);
                 }
             }
@@ -32,7 +31,7 @@ public class LogicsTest {
     private Pair<Integer, Integer> getKnightPosition() {
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
-                if (logics.hasKnight(i, j)) {
+                if (logics.hasKnight(new Position(i, j))) {
                     return new Pair<>(i, j);
                 }
             }
@@ -57,19 +56,20 @@ public class LogicsTest {
 
     @Test
     void testKnightCanMove() {
-        final var knightPosition = new Pair<>(0, 0);
-        final var pawnPosition = new Pair<>(2, 1);
+        final var knightPosition = new Position(0, 0);
+        final var pawnPosition = new Position(2, 1);
         this.logics = new LogicsImpl(SIZE, pawnPosition, knightPosition);
-        assertFalse(this.logics.hit(1, 2));
-        assertTrue(this.logics.hasKnight(1, 2));
+        assertTrue(this.logics.hasKnight(knightPosition));
+        assertFalse(this.logics.hit(new Position(1, 2)));
+        assertTrue(this.logics.hasKnight(new Position(1, 2)));
     }
 
     @Test
     void testKnightCanHitPawn() {
-        final var knightPosition = new Pair<>(0, 0);
-        final var pawnPosition = new Pair<>(1, 2);
+        final var knightPosition = new Position(0, 0);
+        final var pawnPosition = new Position(1, 2);
         this.logics = new LogicsImpl(SIZE, pawnPosition, knightPosition);
-        assertTrue(this.logics.hit(pawnPosition.getX(), pawnPosition.getY()));
-        assertTrue(this.logics.hasKnight(pawnPosition.getX(), pawnPosition.getY()));
+        assertTrue(this.logics.hit(pawnPosition));
+        assertTrue(this.logics.hasKnight(pawnPosition));
     }
 }
