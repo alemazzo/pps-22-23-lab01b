@@ -48,4 +48,9 @@ public class LogicsTest {
         assertNotNull(this.getKnightPosition());
     }
 
+    @Test
+    void testPawnAndKnightAreOnDifferentPosition() {
+        assertNotEquals(this.getPawnPosition(), this.getKnightPosition());
+    }
+
 }
