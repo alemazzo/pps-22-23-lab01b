@@ -32,4 +32,13 @@ public class PieceTest {
         assertEquals(PieceType.PAWN, pawn.getType());
     }
 
+    @Test
+    void testKnight() {
+        final var knightPosition = new Position(0, 0);
+        final Piece knight = this.factory.createKnight(knightPosition);
+        assertNotNull(knight);
+        assertEquals(knightPosition, knight.getPosition());
+        assertEquals(PieceType.KNIGHT, knight.getType());
+    }
+
 }

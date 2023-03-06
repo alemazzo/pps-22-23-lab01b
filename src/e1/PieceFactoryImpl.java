@@ -10,4 +10,9 @@ public class PieceFactoryImpl implements PieceFactory {
     public Piece createPawn(Position pawnPosition) {
         return new PieceImpl(PAWN, pawnPosition);
     }
+
+    @Override
+    public Piece createKnight(Position knightPosition) {
+        return new PieceImpl(PieceType.KNIGHT, knightPosition);
+    }
 }

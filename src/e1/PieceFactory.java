@@ -6,4 +6,6 @@ public interface PieceFactory {
 
 
     Piece createPawn(Position pawnPosition);
+
+    Piece createKnight(Position knightPosition);
 }
