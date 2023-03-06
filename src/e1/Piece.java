@@ -7,6 +7,8 @@ import java.util.Set;
 public interface Piece {
     Position getPosition();
 
+    void setPosition(Position position);
+
     PieceType getType();
 
     Set<Position> getPossibleMoves(int boardSize);

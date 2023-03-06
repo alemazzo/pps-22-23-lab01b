@@ -8,7 +8,8 @@ public class PieceImpl implements Piece {
 
     private final MovementStrategy movementStrategy;
     private final PieceType type;
-    private final Position position;
+    private Position position;
+
     public PieceImpl(PieceType type, Position position, MovementStrategy movementStrategy) {
         this.type = type;
         this.position = position;
@@ -18,6 +19,11 @@ public class PieceImpl implements Piece {
     @Override
     public Position getPosition() {
         return this.position;
+    }
+
+    @Override
+    public void setPosition(Position position) {
+        this.position = position;
     }
 
     @Override

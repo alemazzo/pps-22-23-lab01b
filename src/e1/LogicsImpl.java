@@ -8,13 +8,13 @@ public class LogicsImpl implements Logics {
 
     private final PieceFactory pieceFactory = new PieceFactoryImpl();
     private final Piece pawn;
+	private final Piece knight;
     private final Random random = new Random();
     private final int size;
-    private Piece knight;
 
     public LogicsImpl(int size) {
         this.size = size;
-        this.pawn = this.pieceFactory.createPawn(this.randomEmptyPosition());
+        this.pawn = this.pieceFactory.createPawn(this.randomPosition());
         this.knight = this.pieceFactory.createKnight(this.randomEmptyPosition());
     }
 
@@ -24,8 +24,12 @@ public class LogicsImpl implements Logics {
         this.knight = this.pieceFactory.createKnight(new Position(knight.getX(), knight.getY()));
     }
 
+    private Position randomPosition() {
+        return new Position(this.random.nextInt(size), this.random.nextInt(size));
+    }
+
     private Position randomEmptyPosition() {
-        final var randomPosition = new Position(this.random.nextInt(size), this.random.nextInt(size));
+        final var randomPosition = this.randomPosition();
         return this.pawn != null &&
                 this.pawn.getPosition().equals(randomPosition) ?
                 randomEmptyPosition() : randomPosition;
@@ -41,7 +45,7 @@ public class LogicsImpl implements Logics {
         final var moves = this.knight.getPossibleMoves(this.size);
 
         if (moves.contains(new Position(row, col))) {
-            this.knight = this.pieceFactory.createKnight(new Position(row, col));
+            this.knight.setPosition(new Position(row, col));
             return this.pawn.getPosition().equals(this.knight.getPosition());
         }
 
