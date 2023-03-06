@@ -1,12 +1,15 @@
 package e1.movement;
 
+import e1.MovementStrategy;
 import e1.Pair;
 
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-public class KnightMovementStrategy {
+public class KnightMovementStrategy implements MovementStrategy {
 
+    @Override
     public Set<Position> getPossibleMoves(Position position, int size) {
         int x = position.getX();
         int y = position.getY();

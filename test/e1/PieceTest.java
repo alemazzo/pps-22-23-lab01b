@@ -5,8 +5,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PieceTest {
 
@@ -41,4 +40,14 @@ public class PieceTest {
         assertEquals(PieceType.KNIGHT, knight.getType());
     }
 
+    @Test
+    void testPieceHasMovementStrategyInside() {
+        final var knightPosition = new Position(0, 0);
+        final var boardSize = 8;
+        final Piece knight = this.factory.createKnight(knightPosition);
+        final var moves = knight.getPossibleMoves(boardSize);
+        assertEquals(2, moves.size());
+        assertTrue(moves.contains(new Position(2, 1)));
+        assertTrue(moves.contains(new Position(1, 2)));
+    }
 }
