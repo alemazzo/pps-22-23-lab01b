@@ -42,5 +42,10 @@ public class BoardTest {
         assertEquals(position, piece.get().getPosition());
     }
 
-    
+    @Test
+    void testCannotRetrievePieceAtPosition() {
+        final var position = new Position(0, 0);
+        final var piece = this.board.getPieceAt(position);
+        assertTrue(piece.isEmpty());
+    }
 }
