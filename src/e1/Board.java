@@ -11,4 +11,6 @@ public interface Board {
     Set<Piece> pieces();
 
     Optional<Piece> getPieceAt(Position position);
+
+    Set<Piece> getPiecesOfType(PieceType pawn);
 }

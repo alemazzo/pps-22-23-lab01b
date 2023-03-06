@@ -16,15 +16,8 @@ public class LogicsImpl implements Logics {
     }
 
     public LogicsImpl(int size, Position pawnPosition, Position knightPosition) {
-        this.board = this.factory.createBoardWithPawnAndKnightAt(
-                pawnPosition,
-                knightPosition,
-                size
-        );
-        this.knight = this.board.pieces().stream()
-                .filter(piece -> piece.getType() == PieceType.KNIGHT)
-                .findFirst()
-                .orElseThrow();
+        this.board = this.factory.createBoardWithPawnAndKnightAt(pawnPosition, knightPosition, size);
+        this.knight = this.board.getPieceAt(knightPosition).orElseThrow();
     }
 
     @Override
@@ -56,4 +49,5 @@ public class LogicsImpl implements Logics {
         return this.board.getPieceAt(position).isPresent() &&
                 this.board.getPieceAt(position).get().getType() == PieceType.PAWN;
     }
+    
 }
