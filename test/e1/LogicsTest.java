@@ -43,4 +43,9 @@ public class LogicsTest {
         assertNotNull(this.getPawnPosition());
     }
 
+    @Test
+    void testKnightIsPresent() {
+        assertNotNull(this.getKnightPosition());
+    }
+
 }
