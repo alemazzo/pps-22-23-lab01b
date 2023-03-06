@@ -48,4 +48,6 @@ public class BoardTest {
         final var piece = this.board.getPieceAt(position);
         assertTrue(piece.isEmpty());
     }
+
+    
 }
