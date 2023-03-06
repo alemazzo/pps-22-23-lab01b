@@ -3,6 +3,8 @@ package e1;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Set;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class LogicsTest {
@@ -53,4 +55,12 @@ public class LogicsTest {
         assertNotEquals(this.getPawnPosition(), this.getKnightPosition());
     }
 
+    @Test
+    void testKnightCanMove() {
+        final var knightPosition = new Pair<>(0, 0);
+        final var pawnPosition = new Pair<>(2, 1);
+        this.logics = new LogicsImpl(SIZE, pawnPosition, knightPosition);
+        assertFalse(this.logics.hit(1, 2));
+        assertTrue(this.logics.hasKnight(1, 2));
+    }
 }
