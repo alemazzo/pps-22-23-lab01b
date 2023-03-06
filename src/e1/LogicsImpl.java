@@ -7,29 +7,31 @@ import java.util.*;
 
 public class LogicsImpl implements Logics {
 
+	private final PieceFactory pieceFactory = new PieceFactoryImpl();
 	private final KnightMovementStrategy strategy = new KnightMovementStrategy();
 	
-	private final Pair<Integer,Integer> pawn;
-	private Pair<Integer,Integer> knight;
+	private final Piece pawn;
+	private Piece knight;
 	private final Random random = new Random();
 	private final int size;
 	 
     public LogicsImpl(int size){
     	this.size = size;
-        this.pawn = this.randomEmptyPosition();
-        this.knight = this.randomEmptyPosition();	
+        this.pawn = this.pieceFactory.createPawn(this.randomEmptyPosition());
+        this.knight = this.pieceFactory.createKnight(this.randomEmptyPosition());
     }
 
 	public LogicsImpl(int size, Pair<Integer,Integer> pawn, Pair<Integer,Integer> knight){
 		this.size = size;
-		this.pawn = pawn;
-		this.knight = knight;
+		this.pawn = this.pieceFactory.createPawn(new Position(pawn.getX(),pawn.getY()));
+		this.knight = this.pieceFactory.createKnight(new Position(knight.getX(),knight.getY()));
 	}
     
-	private final Pair<Integer,Integer> randomEmptyPosition(){
-    	Pair<Integer,Integer> pos = new Pair<>(this.random.nextInt(size),this.random.nextInt(size));
-    	// the recursive call below prevents clash with an existing pawn
-    	return this.pawn!=null && this.pawn.equals(pos) ? randomEmptyPosition() : pos;
+	private Position randomEmptyPosition(){
+		final var randomPosition = new Position(this.random.nextInt(size),this.random.nextInt(size));
+    	return this.pawn != null &&
+				this.pawn.getPosition().equals(randomPosition) ?
+				randomEmptyPosition() : randomPosition;
     }
     
 	@Override
@@ -40,13 +42,13 @@ public class LogicsImpl implements Logics {
 		}
 
 		final var moves = this.strategy.getPossibleMoves(
-				new Position(this.knight.getX(), this.knight.getY()),
+				new Position(this.knight.getPosition().getX(), this.knight.getPosition().getY()),
 				size
 		);
 
 		if (moves.contains(new Position(row, col))) {
-			this.knight = new Pair<>(row, col);
-			return this.pawn.equals(this.knight);
+			this.knight = this.pieceFactory.createKnight(new Position(row, col));
+			return this.pawn.getPosition().equals(this.knight.getPosition());
 		}
 
 		return false;
@@ -55,11 +57,11 @@ public class LogicsImpl implements Logics {
 
 	@Override
 	public boolean hasKnight(int row, int col) {
-		return this.knight.equals(new Pair<>(row,col));
+		return this.knight.getPosition().equals(new Position(row,col));
 	}
 
 	@Override
 	public boolean hasPawn(int row, int col) {
-		return this.pawn.equals(new Pair<>(row,col));
+		return this.pawn.getPosition().equals(new Position(row,col));
 	}
 }
