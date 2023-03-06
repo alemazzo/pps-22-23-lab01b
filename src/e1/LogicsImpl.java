@@ -1,67 +1,61 @@
 package e1;
 
-import e1.movement.KnightMovementStrategy;
 import e1.movement.Position;
 
-import java.util.*;
+import java.util.Random;
 
 public class LogicsImpl implements Logics {
 
-	private final PieceFactory pieceFactory = new PieceFactoryImpl();
-	private final KnightMovementStrategy strategy = new KnightMovementStrategy();
-	
-	private final Piece pawn;
-	private Piece knight;
-	private final Random random = new Random();
-	private final int size;
-	 
-    public LogicsImpl(int size){
-    	this.size = size;
+    private final PieceFactory pieceFactory = new PieceFactoryImpl();
+    private final Piece pawn;
+    private final Random random = new Random();
+    private final int size;
+    private Piece knight;
+
+    public LogicsImpl(int size) {
+        this.size = size;
         this.pawn = this.pieceFactory.createPawn(this.randomEmptyPosition());
         this.knight = this.pieceFactory.createKnight(this.randomEmptyPosition());
     }
 
-	public LogicsImpl(int size, Pair<Integer,Integer> pawn, Pair<Integer,Integer> knight){
-		this.size = size;
-		this.pawn = this.pieceFactory.createPawn(new Position(pawn.getX(),pawn.getY()));
-		this.knight = this.pieceFactory.createKnight(new Position(knight.getX(),knight.getY()));
-	}
-    
-	private Position randomEmptyPosition(){
-		final var randomPosition = new Position(this.random.nextInt(size),this.random.nextInt(size));
-    	return this.pawn != null &&
-				this.pawn.getPosition().equals(randomPosition) ?
-				randomEmptyPosition() : randomPosition;
+    public LogicsImpl(int size, Pair<Integer, Integer> pawn, Pair<Integer, Integer> knight) {
+        this.size = size;
+        this.pawn = this.pieceFactory.createPawn(new Position(pawn.getX(), pawn.getY()));
+        this.knight = this.pieceFactory.createKnight(new Position(knight.getX(), knight.getY()));
     }
-    
-	@Override
-	public boolean hit(int row, int col) {
 
-		if (row<0 || col<0 || row >= this.size || col >= this.size) {
-			throw new IndexOutOfBoundsException();
-		}
+    private Position randomEmptyPosition() {
+        final var randomPosition = new Position(this.random.nextInt(size), this.random.nextInt(size));
+        return this.pawn != null &&
+                this.pawn.getPosition().equals(randomPosition) ?
+                randomEmptyPosition() : randomPosition;
+    }
 
-		final var moves = this.strategy.getPossibleMoves(
-				new Position(this.knight.getPosition().getX(), this.knight.getPosition().getY()),
-				size
-		);
+    @Override
+    public boolean hit(int row, int col) {
 
-		if (moves.contains(new Position(row, col))) {
-			this.knight = this.pieceFactory.createKnight(new Position(row, col));
-			return this.pawn.getPosition().equals(this.knight.getPosition());
-		}
+        if (row < 0 || col < 0 || row >= this.size || col >= this.size) {
+            throw new IndexOutOfBoundsException();
+        }
 
-		return false;
+        final var moves = this.knight.getPossibleMoves(this.size);
 
-	}
+        if (moves.contains(new Position(row, col))) {
+            this.knight = this.pieceFactory.createKnight(new Position(row, col));
+            return this.pawn.getPosition().equals(this.knight.getPosition());
+        }
 
-	@Override
-	public boolean hasKnight(int row, int col) {
-		return this.knight.getPosition().equals(new Position(row,col));
-	}
+        return false;
 
-	@Override
-	public boolean hasPawn(int row, int col) {
-		return this.pawn.getPosition().equals(new Position(row,col));
-	}
+    }
+
+    @Override
+    public boolean hasKnight(int row, int col) {
+        return this.knight.getPosition().equals(new Position(row, col));
+    }
+
+    @Override
+    public boolean hasPawn(int row, int col) {
+        return this.pawn.getPosition().equals(new Position(row, col));
+    }
 }
