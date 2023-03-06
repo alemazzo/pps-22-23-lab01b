@@ -1,6 +1,8 @@
-package e1.movement;
+package e1;
 
 import e1.Pair;
+import e1.movement.KnightMovementStrategy;
+import e1.movement.Position;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

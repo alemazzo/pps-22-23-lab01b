@@ -1,11 +1,12 @@
-package e1;
+package e1.piece;
 
 import e1.movement.KnightMovementStrategy;
+import e1.movement.MovementStrategy;
 import e1.movement.Position;
 
 import java.util.Set;
 
-import static e1.PieceType.PAWN;
+import static e1.piece.PieceType.PAWN;
 
 public class PieceFactoryImpl implements PieceFactory {
 

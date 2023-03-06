@@ -1,6 +1,4 @@
-package e1;
-
-import e1.movement.Position;
+package e1.movement;
 
 import java.util.Set;
 

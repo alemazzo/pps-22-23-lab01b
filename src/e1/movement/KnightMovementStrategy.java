@@ -1,11 +1,7 @@
 package e1.movement;
 
-import e1.MovementStrategy;
-import e1.Pair;
-
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class KnightMovementStrategy implements MovementStrategy {
 
@@ -15,15 +11,15 @@ public class KnightMovementStrategy implements MovementStrategy {
         int y = position.getY();
 
         return Set.of(
-            new Position(x + 2, y + 1),
-            new Position(x + 2, y - 1),
-            new Position(x - 2, y + 1),
-            new Position(x - 2, y - 1),
-            new Position(x + 1, y + 2),
-            new Position(x + 1, y - 2),
-            new Position(x - 1, y + 2),
-            new Position(x - 1, y - 2)
-        ).stream()
+                        new Position(x + 2, y + 1),
+                        new Position(x + 2, y - 1),
+                        new Position(x - 2, y + 1),
+                        new Position(x - 2, y - 1),
+                        new Position(x + 1, y + 2),
+                        new Position(x + 1, y - 2),
+                        new Position(x - 1, y + 2),
+                        new Position(x - 1, y - 2)
+                ).stream()
                 .filter(p -> p.getX() >= 0 && p.getY() >= 0)
                 .filter(p -> p.getX() < size && p.getY() < size)
                 .collect(Collectors.toSet());

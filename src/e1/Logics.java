@@ -5,25 +5,26 @@ import e1.movement.Position;
 public interface Logics {
 
     /**
-     * attempt to move Knight on position row,col, if possible
+     * Try to move the knight to the specified position
      *
-     * @param row
-     * @param col
-     * @return whether the pawn has been hit
+     * @param position the position to move the knight to
+     * @return true if the knight captured the pawn, false otherwise
      */
     boolean hit(Position position);
 
     /**
-     * @param row
-     * @param col
-     * @return whether position row,col has the knight
+     * Check if the knight is on the board at specified position
+     *
+     * @param position the position to check
+     * @return true if the knight is on the board at specified position
      */
     boolean hasKnight(Position position);
 
     /**
-     * @param row
-     * @param col
-     * @return whether position row,col has the pawn
+     * Check if the pawn is on the board at specified position
+     *
+     * @param position the position to check
+     * @return true if the pawn is on the board at specified position
      */
     boolean hasPawn(Position position);
 }

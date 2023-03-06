@@ -1,6 +1,12 @@
 package e1;
 
+import e1.board.BoardFactory;
+import e1.board.BoardFactoryImpl;
 import e1.movement.Position;
+import e1.piece.Piece;
+import e1.piece.PieceFactory;
+import e1.piece.PieceFactoryImpl;
+import e1.piece.PieceType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

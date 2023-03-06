@@ -1,6 +1,11 @@
 package e1;
 
+import e1.board.Board;
+import e1.board.BoardFactory;
+import e1.board.BoardFactoryImpl;
 import e1.movement.Position;
+import e1.piece.Piece;
+import e1.piece.PieceType;
 
 public class LogicsImpl implements Logics {
     private final BoardFactory factory = new BoardFactoryImpl();
@@ -16,6 +21,7 @@ public class LogicsImpl implements Logics {
 
     @Override
     public boolean hit(final Position position) {
+
         if (!position.isValid(this.board.size())) {
             throw new IndexOutOfBoundsException();
         }
@@ -24,6 +30,9 @@ public class LogicsImpl implements Logics {
 
         if (moves.contains(position)) {
             final boolean captured = this.board.getPieceAt(position).isPresent();
+            if (captured) {
+                this.board.removePiece(this.board.getPieceAt(position).get());
+            }
             knight.setPosition(position);
             return captured;
         }

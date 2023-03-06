@@ -1,6 +1,12 @@
 package e1;
 
+import e1.board.Board;
+import e1.board.BoardImpl;
 import e1.movement.Position;
+import e1.piece.Piece;
+import e1.piece.PieceFactory;
+import e1.piece.PieceFactoryImpl;
+import e1.piece.PieceType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -85,5 +91,10 @@ public class BoardTest {
     void testCanCheckIfBoardHasPieceAtPosition() {
         assertTrue(this.board.hasPieceTypeAt(PAWN_POSITION, PieceType.PAWN));
         assertTrue(this.board.hasPieceTypeAt(KNIGHT_POSITION, PieceType.KNIGHT));
+    }
+
+    @Test
+    void testCanCheckIfAMovementIsPossible() {
+        assertTrue(this.board.isMovementPossible(KNIGHT_POSITION, PAWN_POSITION));
     }
 }

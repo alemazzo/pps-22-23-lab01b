@@ -1,6 +1,8 @@
-package e1;
+package e1.board;
 
 import e1.movement.Position;
+import e1.piece.Piece;
+import e1.piece.PieceType;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -50,7 +52,14 @@ public final class BoardImpl implements Board {
     public boolean removePiece(Piece piece) {
         return this.pieces.remove(piece);
     }
-    
+
+    @Override
+    public boolean isMovementPossible(Position start, Position end) {
+        return this.getPieceAt(start)
+                .map(piece -> piece.getPossibleMoves(this.size).contains(end))
+                .orElse(false);
+    }
+
 
     @Override
     public int size() {

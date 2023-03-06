@@ -1,6 +1,7 @@
-package e1;
+package e1.board;
 
 import e1.movement.Position;
+import e1.piece.Piece;
 
 import java.util.Set;
 

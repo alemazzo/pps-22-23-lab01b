@@ -1,4 +1,4 @@
-package e1;
+package e1.piece;
 
 import e1.movement.Position;
 
