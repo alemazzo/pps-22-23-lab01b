@@ -66,7 +66,7 @@ public final class BoardImpl implements Board {
         final boolean isPieceAtEnd = this.getPieceAt(end).isPresent();
         if (isPieceAtEnd) this.removePiece(this.getPieceAt(end).get());
         this.getPieceAt(start).orElseThrow().setPosition(end);
-        return true;
+        return isPieceAtEnd;
     }
 
 

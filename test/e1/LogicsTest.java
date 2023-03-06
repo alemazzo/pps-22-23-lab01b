@@ -56,8 +56,8 @@ public class LogicsTest {
 
     @Test
     void testKnightCanMove() {
-        final var knightPosition = new Position(0, 0);
         final var pawnPosition = new Position(2, 1);
+        final var knightPosition = new Position(0, 0);
         this.logics = new LogicsImpl(SIZE, pawnPosition, knightPosition);
         assertTrue(this.logics.hasKnight(knightPosition));
         assertFalse(this.logics.hit(new Position(1, 2)));
