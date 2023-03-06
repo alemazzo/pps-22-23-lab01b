@@ -8,7 +8,7 @@ import java.util.Optional;
 import java.util.Set;
 
 public interface Board {
-    
+
     int size();
 
     Set<Piece> pieces();
@@ -24,4 +24,6 @@ public interface Board {
     boolean removePiece(Piece piece);
 
     boolean isMovementPossible(Position start, Position end);
+
+    boolean move(Position start, Position end);
 }

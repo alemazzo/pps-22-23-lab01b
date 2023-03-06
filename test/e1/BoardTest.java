@@ -97,4 +97,11 @@ public class BoardTest {
     void testCanCheckIfAMovementIsPossible() {
         assertTrue(this.board.isMovementPossible(KNIGHT_POSITION, PAWN_POSITION));
     }
+
+    @Test
+    void testCanMoveAPiece() {
+        assertTrue(this.board.move(KNIGHT_POSITION, PAWN_POSITION));
+        assertEquals(1, this.board.pieces().size());
+        assertTrue(this.board.hasPieceTypeAt(PAWN_POSITION, PieceType.KNIGHT));
+    }
 }

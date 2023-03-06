@@ -60,6 +60,14 @@ public final class BoardImpl implements Board {
                 .orElse(false);
     }
 
+    @Override
+    public boolean move(Position start, Position end) {
+        if (!this.isMovementPossible(start, end)) return false;
+        if (this.getPieceAt(end).isPresent()) this.removePiece(this.getPieceAt(end).get());
+        this.getPieceAt(start).orElseThrow().setPosition(end);
+        return true;
+    }
+
 
     @Override
     public int size() {
