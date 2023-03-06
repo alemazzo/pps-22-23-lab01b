@@ -36,4 +36,23 @@ public class BoardFactoryTest {
         assertEquals(boardSize, board.size());
         assertEquals(2, board.pieces().size());
     }
+
+    @Test
+    void testCanCreateRandomBoardWithPawnAndKnight() {
+        final int boardSize = 8;
+        final var board = this.boardFactory.createRandomBoardWithPawnAndKnight(boardSize);
+        assertEquals(boardSize, board.size());
+        assertEquals(2, board.pieces().size());
+
+        final var pawnCount = board.pieces().stream()
+                .filter(p -> p.getType() == PieceType.PAWN)
+                .count();
+
+        final var knightCount = board.pieces().stream()
+                .filter(p -> p.getType() == PieceType.KNIGHT)
+                .count();
+
+        assertEquals(1, pawnCount);
+        assertEquals(1, knightCount);
+    }
 }

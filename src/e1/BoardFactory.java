@@ -6,4 +6,6 @@ public interface BoardFactory {
     Board createEmptyBoard(int size);
 
     Board createBoardWithPieces(Set<Piece> pieces, int boardSize);
+
+    Board createRandomBoardWithPawnAndKnight(int boardSize);
 }
