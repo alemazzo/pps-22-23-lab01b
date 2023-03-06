@@ -28,4 +28,16 @@ public record BoardImpl(Set<Piece> pieces, int size) implements Board {
                 .collect(Collectors.toSet());
     }
 
+    @Override
+    public boolean hasPieceTypeAt(Position position, PieceType pawn) {
+        return this.getPieceAt(position)
+                .map(piece -> piece.getType() == pawn)
+                .orElse(false);
+    }
+
+    @Override
+    public boolean addPiece(Piece piece) {
+        return this.pieces.add(piece);
+    }
+
 }

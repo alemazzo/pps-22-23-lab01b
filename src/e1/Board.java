@@ -13,4 +13,8 @@ public interface Board {
     Optional<Piece> getPieceAt(Position position);
 
     Set<Piece> getPiecesOfType(PieceType pawn);
+
+    boolean hasPieceTypeAt(Position pawnPosition, PieceType pawn);
+
+    boolean addPiece(Piece piece);
 }

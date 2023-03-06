@@ -37,6 +37,12 @@ public class BoardTest {
     }
 
     @Test
+    void testCanAddPieceToBoard() {
+        final var piece = this.pieceFactory.createPawn(new Position(0, 0));
+        this.board.addPiece(piece);
+        assertEquals(3, this.board.pieces().size());
+    }
+    @Test
     void testCanRetrievePieceAtPosition() {
         final var piece = this.board.getPieceAt(PAWN_POSITION);
         assertTrue(piece.isPresent());
@@ -65,5 +71,11 @@ public class BoardTest {
         final var knight = pieces2.stream().toList().get(0);
         assertEquals(PieceType.KNIGHT, knight.getType());
         assertEquals(KNIGHT_POSITION, knight.getPosition());
+    }
+
+    @Test
+    void testCanCheckIfBoardHasPieceAtPosition() {
+        assertTrue(this.board.hasPieceTypeAt(PAWN_POSITION, PieceType.PAWN));
+        assertTrue(this.board.hasPieceTypeAt(KNIGHT_POSITION, PieceType.KNIGHT));
     }
 }
