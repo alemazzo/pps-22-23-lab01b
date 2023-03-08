@@ -1,6 +1,7 @@
 package e1;
 
 import e1.movement.Position;
+import e1.piece.PieceType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -17,22 +18,13 @@ public class LogicsTest {
         this.logics = new LogicsImpl(SIZE);
     }
 
-    private Pair<Integer, Integer> getPawnPosition() {
+    private Position getPiecePosition(PieceType type) {
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
-                if (logics.hasPawn(new Position(i, j))) {
-                    return new Pair<>(i, j);
-                }
-            }
-        }
-        return null;
-    }
-
-    private Pair<Integer, Integer> getKnightPosition() {
-        for (int i = 0; i < SIZE; i++) {
-            for (int j = 0; j < SIZE; j++) {
-                if (logics.hasKnight(new Position(i, j))) {
-                    return new Pair<>(i, j);
+                if (type == PieceType.PAWN && logics.hasPawn(new Position(i, j))) {
+                    return new Position(i, j);
+                } else if (type == PieceType.KNIGHT && logics.hasKnight(new Position(i, j))) {
+                    return new Position(i, j);
                 }
             }
         }
@@ -41,17 +33,17 @@ public class LogicsTest {
 
     @Test
     void testPawnIsPresent() {
-        assertNotNull(this.getPawnPosition());
+        assertNotNull(this.getPiecePosition(PieceType.PAWN));
     }
 
     @Test
     void testKnightIsPresent() {
-        assertNotNull(this.getKnightPosition());
+        assertNotNull(this.getPiecePosition(PieceType.KNIGHT));
     }
 
     @Test
     void testPawnAndKnightAreOnDifferentPosition() {
-        assertNotEquals(this.getPawnPosition(), this.getKnightPosition());
+        assertNotEquals(this.getPiecePosition(PieceType.PAWN), this.getPiecePosition(PieceType.KNIGHT));
     }
 
     @Test
