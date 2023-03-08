@@ -100,14 +100,14 @@ public class BoardTest {
     @Test
     void testCanMoveAPiece() {
         final Position possibleMove = new Position(2, 2);
-        assertFalse(this.board.move(KNIGHT_POSITION, possibleMove));
+        assertEquals(MovementResult.SUCCESS, this.board.move(KNIGHT_POSITION, possibleMove));
         assertEquals(2, this.board.pieces().size());
         assertTrue(this.board.hasPieceTypeAt(possibleMove, PieceType.KNIGHT));
     }
 
     @Test
     void testCanTakeAPieceWithAMove() {
-        assertTrue(this.board.move(KNIGHT_POSITION, PAWN_POSITION));
+        assertEquals(MovementResult.CAPTURE, this.board.move(KNIGHT_POSITION, PAWN_POSITION));
         assertEquals(1, this.board.pieces().size());
         assertTrue(this.board.hasPieceTypeAt(PAWN_POSITION, PieceType.KNIGHT));
     }

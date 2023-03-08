@@ -3,6 +3,7 @@ package e1;
 import e1.board.Board;
 import e1.board.BoardFactory;
 import e1.board.BoardFactoryImpl;
+import e1.board.MovementResult;
 import e1.movement.Position;
 import e1.piece.PieceType;
 
@@ -26,7 +27,7 @@ public class LogicsImpl implements Logics {
         final var knight = this.board.getPiecesOfType(PieceType.KNIGHT).stream()
                 .findFirst()
                 .orElseThrow();
-        return this.board.move(knight.getPosition(), position);
+        return this.board.move(knight.getPosition(), position) == MovementResult.CAPTURE;
     }
 
     @Override
