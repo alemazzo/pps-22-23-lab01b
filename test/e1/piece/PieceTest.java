@@ -1,23 +1,15 @@
-package e1;
+package e1.piece;
 
 import e1.movement.Position;
-import e1.piece.Piece;
-import e1.piece.PieceFactory;
-import e1.piece.PieceFactoryImpl;
-import e1.piece.PieceType;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PieceTest {
 
-    private PieceFactory factory;
-
-    @BeforeEach
-    void setup() {
-        this.factory = new PieceFactoryImpl();
-    }
+    private final PieceFactory factory = new PieceFactoryImpl();
 
     @Test
     void testPawn() {
@@ -49,8 +41,11 @@ public class PieceTest {
         final var boardSize = 8;
         final Piece knight = this.factory.createKnight(knightPosition);
         final var moves = knight.getPossibleMoves(boardSize);
+        final var expectedMoves = Set.of(
+                new Position(2, 1),
+                new Position(1, 2)
+        );
         assertEquals(2, moves.size());
-        assertTrue(moves.contains(new Position(2, 1)));
-        assertTrue(moves.contains(new Position(1, 2)));
+        assertTrue(moves.containsAll(expectedMoves));
     }
 }
