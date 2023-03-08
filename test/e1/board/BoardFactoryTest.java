@@ -1,7 +1,5 @@
-package e1;
+package e1.board;
 
-import e1.board.BoardFactory;
-import e1.board.BoardFactoryImpl;
 import e1.movement.Position;
 import e1.piece.Piece;
 import e1.piece.PieceFactory;

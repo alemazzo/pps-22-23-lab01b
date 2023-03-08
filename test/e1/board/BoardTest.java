@@ -1,7 +1,5 @@
-package e1;
+package e1.board;
 
-import e1.board.Board;
-import e1.board.BoardImpl;
 import e1.movement.Position;
 import e1.piece.Piece;
 import e1.piece.PieceFactory;
@@ -12,8 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class BoardTest {
 
@@ -91,17 +88,28 @@ public class BoardTest {
     void testCanCheckIfBoardHasPieceAtPosition() {
         assertTrue(this.board.hasPieceTypeAt(PAWN_POSITION, PieceType.PAWN));
         assertTrue(this.board.hasPieceTypeAt(KNIGHT_POSITION, PieceType.KNIGHT));
+        assertFalse(this.board.hasPieceTypeAt(new Position(0, 0), PieceType.PAWN));
     }
 
     @Test
     void testCanCheckIfAMovementIsPossible() {
         assertTrue(this.board.isMovementPossible(KNIGHT_POSITION, PAWN_POSITION));
+        assertFalse(this.board.isMovementPossible(PAWN_POSITION, KNIGHT_POSITION));
     }
 
     @Test
     void testCanMoveAPiece() {
+        final Position possibleMove = new Position(2, 2);
+        assertFalse(this.board.move(KNIGHT_POSITION, possibleMove));
+        assertEquals(2, this.board.pieces().size());
+        assertTrue(this.board.hasPieceTypeAt(possibleMove, PieceType.KNIGHT));
+    }
+
+    @Test
+    void testCanTakeAPieceWithAMove() {
         assertTrue(this.board.move(KNIGHT_POSITION, PAWN_POSITION));
         assertEquals(1, this.board.pieces().size());
         assertTrue(this.board.hasPieceTypeAt(PAWN_POSITION, PieceType.KNIGHT));
     }
+
 }
