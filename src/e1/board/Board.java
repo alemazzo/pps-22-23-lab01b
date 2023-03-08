@@ -1,5 +1,6 @@
 package e1.board;
 
+import e1.movement.MovementResult;
 import e1.movement.Position;
 import e1.piece.Piece;
 import e1.piece.PieceType;
@@ -7,6 +8,9 @@ import e1.piece.PieceType;
 import java.util.Optional;
 import java.util.Set;
 
+/**
+ * The board
+ */
 public interface Board {
 
     /**

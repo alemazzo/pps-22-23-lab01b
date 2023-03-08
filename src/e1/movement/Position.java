@@ -2,6 +2,9 @@ package e1.movement;
 
 import e1.Pair;
 
+/**
+ * A position on the board
+ */
 public class Position extends Pair<Integer, Integer> {
     public Position(int x, int y) {
         super(x, y);

@@ -1,7 +1,6 @@
 package e1.piece;
 
 import e1.movement.KnightMovementStrategy;
-import e1.movement.MovementStrategy;
 import e1.movement.Position;
 
 import java.util.Set;
@@ -12,12 +11,7 @@ public class PieceFactoryImpl implements PieceFactory {
 
     @Override
     public Piece createPawn(Position pawnPosition) {
-        return new PieceImpl(PAWN, pawnPosition, new MovementStrategy() {
-            @Override
-            public Set<Position> getPossibleMoves(Position position, int boardSize) {
-                return Set.of();
-            }
-        });
+        return new PieceImpl(PAWN, pawnPosition, (position, boardSize) -> Set.of());
     }
 
     @Override

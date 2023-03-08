@@ -1,5 +1,6 @@
 package e1.board;
 
+import e1.movement.MovementResult;
 import e1.movement.Position;
 import e1.piece.Piece;
 import e1.piece.PieceType;
@@ -7,10 +8,7 @@ import e1.piece.PieceType;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public final class BoardImpl implements Board {
-
-    private final Set<Piece> pieces;
-    private final int size;
+public record BoardImpl(Set<Piece> pieces, int size) implements Board {
 
     public BoardImpl(Set<Piece> pieces, int size) {
         this.pieces = new HashSet<>(pieces);
@@ -69,12 +67,6 @@ public final class BoardImpl implements Board {
         return isPieceAtEnd ? MovementResult.CAPTURE : MovementResult.SUCCESS;
     }
 
-
-    @Override
-    public int size() {
-        return size;
-    }
-
     @Override
     public boolean equals(Object obj) {
         if (obj == this) return true;
@@ -82,11 +74,6 @@ public final class BoardImpl implements Board {
         var that = (BoardImpl) obj;
         return Objects.equals(this.pieces, that.pieces) &&
                 this.size == that.size;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(pieces, size);
     }
 
     @Override

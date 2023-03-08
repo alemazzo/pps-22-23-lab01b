@@ -1,5 +1,6 @@
 package e1.board;
 
+import e1.movement.MovementResult;
 import e1.movement.Position;
 import e1.piece.Piece;
 import e1.piece.PieceFactory;

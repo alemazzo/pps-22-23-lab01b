@@ -3,6 +3,9 @@ package e1.movement;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * The movement strategy for a knight
+ */
 public class KnightMovementStrategy implements MovementStrategy {
 
     @Override
