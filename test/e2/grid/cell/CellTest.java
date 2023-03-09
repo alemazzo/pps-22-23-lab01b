@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CellTest {
 
@@ -22,4 +23,12 @@ public class CellTest {
         this.cell = new CellImpl(hasMine);
         assertFalse(cell.hasMine());
     }
+
+    @Test
+    void testCellHasMine() {
+        final boolean hasMine = true;
+        this.cell = new CellImpl(hasMine);
+        assertTrue(cell.hasMine());
+    }
+
 }
