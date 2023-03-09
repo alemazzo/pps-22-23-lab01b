@@ -52,4 +52,12 @@ public class CellTest {
         assertFalse(cell.isFlagged());
     }
 
+    @Test
+    void testCellShouldBeFlaggable() {
+        final var cellPosition = new Position(0, 0);
+        Cell cell = new CellImpl(cellPosition);
+        cell.flag();
+        assertTrue(cell.isFlagged());
+    }
+
 }

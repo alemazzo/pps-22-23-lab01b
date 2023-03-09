@@ -10,4 +10,6 @@ public interface Cell {
     void reveal();
 
     boolean isFlagged();
+
+    void flag();
 }

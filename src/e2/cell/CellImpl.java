@@ -5,9 +5,8 @@ import e2.Position;
 public class CellImpl implements Cell {
 
     private final Position cellPosition;
-
+    private boolean flagged = false;
     private boolean revealed = false;
-    private final boolean flagged = false;
 
     public CellImpl(Position cellPosition) {
         this.cellPosition = cellPosition;
@@ -31,6 +30,11 @@ public class CellImpl implements Cell {
     @Override
     public boolean isFlagged() {
         return this.flagged;
+    }
+
+    @Override
+    public void flag() {
+        this.flagged = true;
     }
 
 }
