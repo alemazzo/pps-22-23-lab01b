@@ -11,7 +11,7 @@ public class GridTest {
 
     @BeforeEach
     void setup() {
-        grid = new GridImpl();
+        grid = new GridImpl(1);
     }
 
     @Test
@@ -19,5 +19,5 @@ public class GridTest {
         final var actualCells = grid.cells();
         assertEquals(0, actualCells.size());
     }
-    
+
 }

@@ -8,4 +8,5 @@ public interface Grid {
 
     Set<Cell> cells();
 
+    int size();
 }
