@@ -21,4 +21,11 @@ public class CellFactoryTest {
         Cell cell = factory.createMineCell(position);
         assertEquals(CellType.MINE, cell.getCellType());
     }
+
+    @Test
+    void testCellFactoryShouldCreateEmptyCell() {
+        final var position = new Position(0, 0);
+        Cell cell = factory.createEmptyCell(position);
+        assertEquals(CellType.EMPTY, cell.getCellType());
+    }
 }

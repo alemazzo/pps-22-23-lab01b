@@ -8,5 +8,10 @@ public class CellFactoryImpl implements CellFactory {
     public Cell createMineCell(Position position) {
         return new CellImpl(position, CellType.MINE);
     }
+
+    @Override
+    public Cell createEmptyCell(Position position) {
+        return new CellImpl(position, CellType.EMPTY);
+    }
     
 }
