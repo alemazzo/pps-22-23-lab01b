@@ -41,6 +41,16 @@ public class GridFactoryTest {
     }
 
     @Test
+    void testGridWithRandomMinesShouldRetrieveDifferentPosition() {
+        final int maxMinesCount = DEFAULT_SIZE * DEFAULT_SIZE;
+        final Grid grid = factory.gridWithRandomMines(DEFAULT_SIZE, maxMinesCount);
+        assertEquals(maxMinesCount, grid.cells().stream()
+                .filter(Cell::hasMine)
+                .count()
+        );
+    }
+
+    @Test
     void testGridWithMinesAt() {
         final var minesPositions = Set.of(
                 new Pair<>(0, 0),
@@ -57,5 +67,6 @@ public class GridFactoryTest {
                 .allMatch(cell -> minesPositions.contains(cell.position()))
         );
     }
+
 
 }
