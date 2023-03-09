@@ -10,12 +10,16 @@ import java.util.stream.IntStream;
 public class GridFactoryImpl implements GridFactory {
     @Override
     public Grid emptyGrid(int size) {
-        return new GridImpl(size);
+        return this.gridWithMinesAt(size, Collections.emptySet());
     }
 
     @Override
     public Grid gridWithRandomMines(int size, int minesCount) {
-        final var minesPositions = getRandomPosition(size, minesCount);
+        return this.gridWithMinesAt(size, this.getRandomPosition(size, minesCount));
+    }
+
+    @Override
+    public Grid gridWithMinesAt(int size, Set<Pair<Integer, Integer>> minesPositions) {
         return new GridImpl(size, minesPositions);
     }
 
@@ -36,8 +40,4 @@ public class GridFactoryImpl implements GridFactory {
                 .collect(Collectors.toSet());
     }
 
-    @Override
-    public Grid gridWithMinesAt(int size, Set<Pair<Integer, Integer>> minesPositions) {
-        return new GridImpl(size, minesPositions);
-    }
 }
