@@ -4,4 +4,6 @@ import e2.Position;
 
 public interface Cell {
     Position getCellPosition();
+
+    boolean isRevealed();
 }

@@ -6,6 +6,8 @@ public class CellImpl implements Cell {
 
     private final Position cellPosition;
 
+    private final boolean revealed = false;
+
     public CellImpl(Position cellPosition) {
         this.cellPosition = cellPosition;
     }
@@ -13,5 +15,10 @@ public class CellImpl implements Cell {
     @Override
     public Position getCellPosition() {
         return cellPosition;
+    }
+
+    @Override
+    public boolean isRevealed() {
+        return this.revealed;
     }
 }
