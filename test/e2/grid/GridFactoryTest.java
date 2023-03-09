@@ -26,4 +26,14 @@ public class GridFactoryTest {
         );
     }
 
+    @Test
+    void testGridWithRandomMines() {
+        final Grid grid = factory.gridWithRandomMines(DEFAULT_SIZE, 1);
+        assertEquals(DEFAULT_SIZE, grid.size());
+        assertEquals(1, grid.cells().stream()
+                .filter(Cell::hasMine)
+                .count()
+        );
+    }
+
 }
