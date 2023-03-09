@@ -28,4 +28,5 @@ public class CellFactoryTest {
         Cell cell = factory.createEmptyCell(position);
         assertEquals(CellType.EMPTY, cell.getCellType());
     }
+    
 }
