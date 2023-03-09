@@ -35,4 +35,14 @@ public class CellTest {
         assertTrue(cell.isRevealed());
     }
 
+    @Test
+    void testCellShouldBeRevealableOnlyOnce() {
+        final var cellPosition = new Position(0, 0);
+        Cell cell = new CellImpl(cellPosition);
+        cell.reveal();
+        assertTrue(cell.isRevealed());
+        cell.reveal();
+        assertTrue(cell.isRevealed());
+    }
+
 }
