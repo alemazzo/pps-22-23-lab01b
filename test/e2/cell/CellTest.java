@@ -69,4 +69,11 @@ public class CellTest {
         cell.flag();
         assertFalse(cell.isFlagged());
     }
+
+    @Test
+    void testCellShouldHaveType() {
+        final var cellPosition = new Position(0, 0);
+        Cell cell = new CellImpl(cellPosition);
+        assertEquals(CellType.EMPTY, cell.getCellType());
+    }
 }
