@@ -1,5 +1,7 @@
 package e2.grid.cell;
 
-public record CellImpl(boolean hasMine) implements Cell {
+import e2.Pair;
+
+public record CellImpl(Pair<Integer, Integer> position, boolean hasMine) implements Cell {
 
 }

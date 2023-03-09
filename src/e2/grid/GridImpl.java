@@ -4,15 +4,14 @@ import e2.Pair;
 import e2.grid.cell.Cell;
 import e2.grid.cell.CellImpl;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.IntStream;
 
 public class GridImpl implements Grid {
 
-    private final Map<Pair<Integer, Integer>, Cell> grid = new HashMap<>();
-
+    private final Set<Cell> cells = new HashSet<>();
     private final int size;
 
     public GridImpl(int size) {
@@ -25,15 +24,15 @@ public class GridImpl implements Grid {
         IntStream.range(0, size).forEach(i -> {
             IntStream.range(0, size).forEach(j -> {
                 final var position = new Pair<>(i, j);
-                final var cell = new CellImpl(minesPositions.contains(position));
-                this.grid.put(position, cell);
+                final var cell = new CellImpl(position, minesPositions.contains(position));
+                this.cells.add(cell);
             });
         });
     }
 
     @Override
     public Set<Cell> cells() {
-        return Set.copyOf(this.grid.values());
+        return Collections.unmodifiableSet(this.cells);
     }
 
     @Override
