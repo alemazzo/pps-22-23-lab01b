@@ -54,11 +54,12 @@ public class GridFactoryTest {
         final var minesCount = 5;
         final Grid grid = factory.createGridWithRandomMines(GRID_SIZE, minesCount);
         final Set<Cell> cells = getCellsFromGrid(grid);
-        
+
         int minesInGrid = cells.stream()
                 .filter(cell -> cell.getCellType() == CellType.MINE)
                 .mapToInt(cell -> 1)
                 .sum();
         assertEquals(minesCount, minesInGrid);
     }
+    
 }
