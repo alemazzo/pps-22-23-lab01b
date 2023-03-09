@@ -34,4 +34,7 @@ public interface Grid {
      * @return the neighbours of the cell.
      */
     Set<Cell> getNeighboursOf(Pair<Integer, Integer> position);
+
+    RevealResult reveal(Pair<Integer, Integer> position);
+
 }

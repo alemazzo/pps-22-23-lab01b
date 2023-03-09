@@ -1,9 +1,8 @@
-package e2.grid;
+package e2.grid.factory;
 
 import e2.Pair;
+import e2.grid.Grid;
 import e2.grid.cell.Cell;
-import e2.grid.factory.GridFactory;
-import e2.grid.factory.GridFactoryImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

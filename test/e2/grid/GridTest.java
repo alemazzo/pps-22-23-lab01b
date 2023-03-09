@@ -13,6 +13,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GridTest {
 
+    private final static int DEFAULT_SIZE = 10;
+
     private GridFactory gridFactory;
 
     @BeforeEach
@@ -40,6 +42,15 @@ public class GridTest {
         assertEquals(1, neighbours.stream()
                 .filter(Cell::hasMine)
                 .count());
+    }
+
+    @Test
+    void testRevealMineShouldReturnResultMine() {
+        final Grid grid = this.gridFactory.gridWithMinesAt(DEFAULT_SIZE, Set.of(
+                new Pair<>(0, 0)
+        ));
+        final RevealResult result = grid.reveal(new Pair<>(0, 0));
+        assertEquals(RevealResult.MINE, result);
     }
 
 }

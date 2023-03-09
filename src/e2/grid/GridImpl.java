@@ -48,4 +48,28 @@ public class GridImpl implements Grid {
                 .collect(Collectors.toSet());
     }
 
+    @Override
+    public RevealResult reveal(Pair<Integer, Integer> position) {
+        final var cell = this.cells.stream()
+                .filter(c -> c.position().equals(position))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Invalid position: " + position));
+
+        if (cell.hasMine()) {
+            return RevealResult.MINE;
+        }
+
+        final var neighbours = this.getNeighboursOf(position);
+        final var minesCount = neighbours.stream()
+                .filter(Cell::hasMine)
+                .count();
+
+        if (minesCount == 0) {
+            neighbours.forEach(Cell::reveal);
+        }
+
+        cell.reveal();
+        return RevealResult.NO_MINE;
+    }
+
 }
