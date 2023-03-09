@@ -83,4 +83,5 @@ public class CellTest {
         Cell cell = new CellImpl(cellPosition, CellType.MINE);
         assertEquals(CellType.MINE, cell.getCellType());
     }
+    
 }
