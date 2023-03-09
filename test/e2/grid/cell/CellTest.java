@@ -33,6 +33,13 @@ public class CellTest {
         assertTrue(cell.hasMine());
     }
 
+    @Test
+    void testCellHasNoNeighbours() {
+        this.cell = new CellImpl(false, DEFAULT_NEIGHBOURS);
+        final var actualNeighbours = cell.neighbours();
+        assertEquals(DEFAULT_NEIGHBOURS.size(), actualNeighbours.size());
+        assertTrue(actualNeighbours.containsAll(DEFAULT_NEIGHBOURS));
+    }
 
     @Test
     void testCellHasNeighbours() {
@@ -45,5 +52,6 @@ public class CellTest {
         assertEquals(neighbours.size(), actualNeighbours.size());
         assertTrue(actualNeighbours.containsAll(neighbours));
     }
+
 
 }
