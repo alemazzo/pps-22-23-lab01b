@@ -69,7 +69,7 @@ public class GridImpl implements Grid {
         }
 
         cell.reveal();
-        return RevealResult.NO_MINE;
+        return RevealResult.EMPTY;
     }
 
 }

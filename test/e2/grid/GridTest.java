@@ -53,4 +53,11 @@ public class GridTest {
         assertEquals(RevealResult.MINE, result);
     }
 
+    @Test
+    void testRevealEmptyCellShouldReturnResultEmpty() {
+        final Grid grid = this.gridFactory.emptyGrid(DEFAULT_SIZE);
+        final RevealResult result = grid.reveal(new Pair<>(0, 0));
+        assertEquals(RevealResult.EMPTY, result);
+    }
+
 }
