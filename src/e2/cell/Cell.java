@@ -8,4 +8,6 @@ public interface Cell {
     boolean isRevealed();
 
     void reveal();
+
+    boolean isFlagged();
 }

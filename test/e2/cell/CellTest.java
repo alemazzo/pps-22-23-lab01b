@@ -45,4 +45,11 @@ public class CellTest {
         assertTrue(cell.isRevealed());
     }
 
+    @Test
+    void testCellShouldHaveFlaggedState() {
+        final var cellPosition = new Position(0, 0);
+        Cell cell = new CellImpl(cellPosition);
+        assertFalse(cell.isFlagged());
+    }
+
 }

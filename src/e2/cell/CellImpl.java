@@ -7,6 +7,7 @@ public class CellImpl implements Cell {
     private final Position cellPosition;
 
     private boolean revealed = false;
+    private final boolean flagged = false;
 
     public CellImpl(Position cellPosition) {
         this.cellPosition = cellPosition;
@@ -26,5 +27,10 @@ public class CellImpl implements Cell {
     public void reveal() {
         this.revealed = true;
     }
-    
+
+    @Override
+    public boolean isFlagged() {
+        return this.flagged;
+    }
+
 }
