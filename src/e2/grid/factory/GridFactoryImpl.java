@@ -1,6 +1,8 @@
-package e2.grid;
+package e2.grid.factory;
 
 import e2.Pair;
+import e2.grid.Grid;
+import e2.grid.GridImpl;
 
 import java.util.Collections;
 import java.util.Set;
@@ -23,6 +25,14 @@ public class GridFactoryImpl implements GridFactory {
         return new GridImpl(size, minesPositions);
     }
 
+    /**
+     * Get a set of random positions.
+     * Those positions are in the range [0, size) x [0, size) and are unique.
+     *
+     * @param size  the size of the grid.
+     * @param count the number of positions to return.
+     * @return the set of random positions.
+     */
     private Set<Pair<Integer, Integer>> getRandomPosition(int size, int count) {
         final Set<Pair<Integer, Integer>> allPosition = IntStream.range(0, size)
                 .boxed()

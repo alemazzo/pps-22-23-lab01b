@@ -15,11 +15,6 @@ public class GridImpl implements Grid {
     private final Set<Cell> cells = new HashSet<>();
     private final int size;
 
-    public GridImpl(int size) {
-        this(size, Set.of());
-    }
-
-
     public GridImpl(int size, Set<Pair<Integer, Integer>> minesPositions) {
         this.size = size;
         IntStream.range(0, size).forEach(i -> {
