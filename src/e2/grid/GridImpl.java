@@ -18,7 +18,19 @@ public class GridImpl implements Grid {
     private final Set<Cell> cells = new HashSet<>();
 
     public GridImpl(int size) {
+        this(size, Set.of());
+    }
+
+    public GridImpl(int size, Set<Position> minesPositions) {
         this.size = size;
+        build();
+        for (Position position : minesPositions) {
+            this.cells.removeIf(cell -> cell.getCellPosition().equals(position));
+            this.cells.add(this.cellFactory.createMineCell(position));
+        }
+    }
+
+    private void build() {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 this.cells.add(this.cellFactory.createEmptyCell(new Position(i, j)));
