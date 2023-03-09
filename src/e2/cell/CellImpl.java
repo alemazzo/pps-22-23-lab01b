@@ -34,7 +34,7 @@ public class CellImpl implements Cell {
 
     @Override
     public void flag() {
-        this.flagged = true;
+        this.flagged = !this.flagged;
     }
 
 }

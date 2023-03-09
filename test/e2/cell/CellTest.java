@@ -60,4 +60,13 @@ public class CellTest {
         assertTrue(cell.isFlagged());
     }
 
+    @Test
+    void testCellCanBeUnflaggedByCallingFlagMultipleTimes() {
+        final var cellPosition = new Position(0, 0);
+        Cell cell = new CellImpl(cellPosition);
+        cell.flag();
+        assertTrue(cell.isFlagged());
+        cell.flag();
+        assertFalse(cell.isFlagged());
+    }
 }
