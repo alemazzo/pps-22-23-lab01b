@@ -76,4 +76,11 @@ public class CellTest {
         Cell cell = new CellImpl(cellPosition);
         assertEquals(CellType.EMPTY, cell.getCellType());
     }
+
+    @Test
+    void testCellCanBeMine() {
+        final var cellPosition = new Position(0, 0);
+        Cell cell = new CellImpl(cellPosition, CellType.MINE);
+        assertEquals(CellType.MINE, cell.getCellType());
+    }
 }
