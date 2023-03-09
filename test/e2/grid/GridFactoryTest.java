@@ -61,5 +61,17 @@ public class GridFactoryTest {
                 .sum();
         assertEquals(minesCount, minesInGrid);
     }
+
+    @Test
+    void testRandomGridShouldHaveCorrectNumberOfMines() {
+        final var maxMines = GRID_SIZE * GRID_SIZE;
+        final Grid grid = factory.createGridWithRandomMines(GRID_SIZE, maxMines);
+        final Set<Cell> cells = getCellsFromGrid(grid);
+        final int minesInGrid = cells.stream()
+                .filter(cell -> cell.getCellType() == CellType.MINE)
+                .mapToInt(cell -> 1)
+                .sum();
+        assertEquals(maxMines, minesInGrid);
+    }
     
 }
