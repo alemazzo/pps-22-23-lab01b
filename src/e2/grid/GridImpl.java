@@ -7,6 +7,7 @@ import e2.grid.cell.CellImpl;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class GridImpl implements Grid {
@@ -38,6 +39,18 @@ public class GridImpl implements Grid {
     @Override
     public int size() {
         return this.size;
+    }
+
+    private boolean areNeighbours(Pair<Integer, Integer> a, Pair<Integer, Integer> b) {
+        return Math.abs(a.getX() - b.getX()) <= 1 && Math.abs(a.getY() - b.getY()) <= 1;
+    }
+
+    @Override
+    public Set<Cell> getNeighboursOf(Pair<Integer, Integer> position) {
+        return this.cells.stream()
+                .filter(cell -> !position.equals(cell.position()))
+                .filter(cell -> this.areNeighbours(cell.position(), position))
+                .collect(Collectors.toSet());
     }
 
 }
