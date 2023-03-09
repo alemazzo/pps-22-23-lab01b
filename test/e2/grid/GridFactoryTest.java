@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class GridFactoryTest {
 
@@ -50,6 +51,10 @@ public class GridFactoryTest {
         assertEquals(2, grid.cells().stream()
                 .filter(Cell::hasMine)
                 .count()
+        );
+        assertTrue(grid.cells().stream()
+                .filter(Cell::hasMine)
+                .allMatch(cell -> minesPositions.contains(cell.position()))
         );
     }
 
