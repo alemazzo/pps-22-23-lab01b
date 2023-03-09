@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 public class GridImpl implements Grid {
 
     private final CellFactory cellFactory = new CellFactoryImpl();
-    private final int size;
 
     private final Set<Cell> cells = new HashSet<>();
 
@@ -22,15 +21,14 @@ public class GridImpl implements Grid {
     }
 
     public GridImpl(int size, Set<Position> minesPositions) {
-        this.size = size;
-        build();
+        build(size);
         for (Position position : minesPositions) {
             this.cells.removeIf(cell -> cell.getCellPosition().equals(position));
             this.cells.add(this.cellFactory.createMineCell(position));
         }
     }
 
-    private void build() {
+    private void build(int size) {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 this.cells.add(this.cellFactory.createEmptyCell(new Position(i, j)));
@@ -40,7 +38,9 @@ public class GridImpl implements Grid {
 
     @Override
     public int getSize() {
-        return this.size;
+        return (int) Math.sqrt(this.cells.stream()
+                .mapToInt(cell -> 1)
+                .sum());
     }
 
     @Override
@@ -62,4 +62,5 @@ public class GridImpl implements Grid {
                 .filter(cell -> areNeighbours(position, cell.getCellPosition()))
                 .collect(Collectors.toSet());
     }
+
 }

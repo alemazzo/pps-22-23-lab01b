@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class GridFactoryImpl implements GridFactory {
+
     @Override
     public Grid createEmptyGrid(int gridSize) {
         return new GridImpl(gridSize);
@@ -32,4 +33,5 @@ public class GridFactoryImpl implements GridFactory {
                 .limit(minesCount)
                 .collect(Collectors.toSet());
     }
+    
 }
