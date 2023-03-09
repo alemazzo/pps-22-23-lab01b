@@ -7,18 +7,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GridTest {
 
-    private final int BOARD_SIZE = 10;
-
     private Grid grid;
 
     @BeforeEach
     void setup() {
-        grid = new GridImpl(BOARD_SIZE);
+        grid = new GridImpl();
     }
 
     @Test
-    void testGridHasSize() {
-        assertEquals(BOARD_SIZE, grid.size());
+    void testGridHasCells() {
+        final var actualCells = grid.cells();
+        assertEquals(0, actualCells.size());
     }
     
 }
