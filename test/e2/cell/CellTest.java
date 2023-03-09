@@ -4,8 +4,7 @@ import e2.Position;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CellTest {
 
@@ -26,6 +25,14 @@ public class CellTest {
         final var cellPosition = new Position(0, 0);
         Cell cell = new CellImpl(cellPosition);
         assertFalse(cell.isRevealed());
+    }
+
+    @Test
+    void testCellShouldBeRevealable() {
+        final var cellPosition = new Position(0, 0);
+        Cell cell = new CellImpl(cellPosition);
+        cell.reveal();
+        assertTrue(cell.isRevealed());
     }
 
 }

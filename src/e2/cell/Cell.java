@@ -6,4 +6,6 @@ public interface Cell {
     Position getCellPosition();
 
     boolean isRevealed();
+
+    void reveal();
 }
