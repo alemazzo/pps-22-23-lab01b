@@ -12,6 +12,7 @@ import java.util.Map;
 public class GUI extends JFrame {
 
     private static final long serialVersionUID = -6218820567019985015L;
+    private static final int NUM_MINES = 10;
     private final Map<JButton, Pair<Integer, Integer>> buttons = new HashMap<>();
     private final Logics logics;
 
