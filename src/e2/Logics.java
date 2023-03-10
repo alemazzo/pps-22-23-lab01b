@@ -9,4 +9,5 @@ public interface Logics {
     void toggleFlag(Position position);
 
     CellStatus getCellStatus(Position position);
+    
 }
