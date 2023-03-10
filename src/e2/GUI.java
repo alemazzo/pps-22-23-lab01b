@@ -27,14 +27,15 @@ public class GUI extends JFrame {
         ActionListener onClick = (e) -> {
             final JButton bt = (JButton) e.getSource();
             final Pair<Integer, Integer> pos = buttons.get(bt);
-            boolean aMineWasFound = false; // call the logic here to tell it that cell at 'pos' has been seleced
+            final RevealResult result = this.logics.reveal(new Position(pos.getX(), pos.getY()));
+            boolean aMineWasFound = result.equals(RevealResult.LOSE); // call the logic here to tell it that cell at 'pos' has been seleced
             if (aMineWasFound) {
                 quitGame();
                 JOptionPane.showMessageDialog(this, "You lost!!");
             } else {
                 drawBoard();
             }
-            boolean isThereVictory = false; // call the logic here to ask if there is victory
+            boolean isThereVictory = result.equals(RevealResult.WIN); // call the logic here to ask if there is victory
             if (isThereVictory) {
                 quitGame();
                 JOptionPane.showMessageDialog(this, "You won!!");
