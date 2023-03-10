@@ -31,4 +31,15 @@ public class LogicTest {
         assertEquals(RevealResult.WIN, result);
     }
 
+    @Test
+    void testRevealOnMineShouldReturnResultLose() {
+        final var minesPositions = Set.of(
+                new Position(0, 0),
+                new Position(0, 1)
+        );
+        logics = new LogicsImpl(BOARD_SIZE, minesPositions);
+        final var result = logics.reveal(new Position(0, 0));
+        assertEquals(RevealResult.LOSE, result);
+    }
+
 }
