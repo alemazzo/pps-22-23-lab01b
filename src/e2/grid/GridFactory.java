@@ -1,5 +1,9 @@
 package e2.grid;
 
+import e2.Position;
+
+import java.util.Set;
+
 /**
  * Factory for creating grids.
  */
@@ -22,4 +26,13 @@ public interface GridFactory {
      */
     Grid createGridWithRandomMines(int gridSize, int minesCount);
 
+    /**
+     * Creates a grid with the specified size and places mines at the specified positions.
+     *
+     * @param gridSize       the size of the grid
+     * @param minesPositions the positions of the mines
+     * @return the grid
+     */
+    Grid createGridWithSpecifiedMines(int gridSize, Set<Position> minesPositions);
+    
 }

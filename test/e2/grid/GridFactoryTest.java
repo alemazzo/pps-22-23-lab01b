@@ -63,6 +63,26 @@ public class GridFactoryTest {
     }
 
     @Test
+    void testCanCreateGridWithSpecifiedBombPositions() {
+        final var minesCount = 5;
+        final var minesPositions = Set.of(
+                new Position(0, 0),
+                new Position(0, 1),
+                new Position(0, 2),
+                new Position(0, 3),
+                new Position(0, 4)
+        );
+        final Grid grid = factory.createGridWithSpecifiedMines(GRID_SIZE, minesPositions);
+        final Set<Cell> cells = getCellsFromGrid(grid);
+
+        int minesInGrid = cells.stream()
+                .filter(cell -> cell.getCellType() == CellType.MINE)
+                .mapToInt(cell -> 1)
+                .sum();
+        assertEquals(minesCount, minesInGrid);
+    }
+
+    @Test
     void testRandomGridShouldHaveCorrectNumberOfMines() {
         final var maxMines = GRID_SIZE * GRID_SIZE;
         final Grid grid = factory.createGridWithRandomMines(GRID_SIZE, maxMines);

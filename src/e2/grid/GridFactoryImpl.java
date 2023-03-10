@@ -12,12 +12,17 @@ public class GridFactoryImpl implements GridFactory {
 
     @Override
     public Grid createEmptyGrid(int gridSize) {
-        return new GridImpl(gridSize);
+        return this.createGridWithSpecifiedMines(gridSize, Set.of());
     }
 
     @Override
     public Grid createGridWithRandomMines(int gridSize, int minesCount) {
-        return new GridImpl(gridSize, this.getRandomPositions(gridSize, minesCount));
+        return this.createGridWithSpecifiedMines(gridSize, getRandomPositions(gridSize, minesCount));
+    }
+
+    @Override
+    public Grid createGridWithSpecifiedMines(int gridSize, Set<Position> minesPositions) {
+        return new GridImpl(gridSize, minesPositions);
     }
 
     private Set<Position> getRandomPositions(int gridSize, int minesCount) {
@@ -33,5 +38,5 @@ public class GridFactoryImpl implements GridFactory {
                 .limit(minesCount)
                 .collect(Collectors.toSet());
     }
-    
+
 }
