@@ -5,13 +5,13 @@ import e2.Position;
 public class CellFactoryImpl implements CellFactory {
 
     @Override
-    public Cell createMineCell(Position position) {
+    public Cell createMine(Position position) {
         return new CellImpl(position, CellType.MINE);
     }
 
     @Override
-    public Cell createEmptyCell(Position position) {
+    public Cell createEmpty(Position position) {
         return new CellImpl(position, CellType.EMPTY);
     }
-    
+
 }

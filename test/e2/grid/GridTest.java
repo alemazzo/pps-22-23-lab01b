@@ -7,8 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Optional;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class GridTest {
 
@@ -45,6 +44,26 @@ public class GridTest {
         for (Cell neighbour : neighbours) {
             assertTrue(expectedNeighbours.contains(neighbour.getPosition()));
         }
+    }
+
+    @Test
+    void testGridShouldExposeAreAllEmptyCellsRevealed() {
+        final Grid grid = new GridImpl(GRID_SIZE);
+        assertFalse(grid.areAllEmptyCellsRevealed());
+    }
+
+    @Test
+    void testAllEmptyCells() {
+        final Grid grid = new GridImpl(GRID_SIZE);
+        for (int i = 0; i < GRID_SIZE; i++) {
+            for (int j = 0; j < GRID_SIZE; j++) {
+                final var position = new Position(i, j);
+                final Optional<Cell> cell = grid.getCellAt(position);
+                assertTrue(cell.isPresent());
+                cell.get().reveal();
+            }
+        }
+        assertTrue(grid.areAllEmptyCellsRevealed());
     }
 
 }

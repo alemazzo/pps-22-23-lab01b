@@ -37,10 +37,6 @@ public class LogicsImpl implements Logics {
             return RevealResult.LOSE;
         }
 
-        if (grid.getCells().stream().allMatch(Cell::isRevealed)) {
-            return RevealResult.WIN;
-        }
-
         final Set<Cell> neighbours = grid.getNeighboursOfCellAt(position);
         final long numMines = neighbours.stream()
                 .filter(neighbour -> neighbour.getType() == CellType.MINE)
@@ -52,7 +48,7 @@ public class LogicsImpl implements Logics {
                     .forEach(neighbour -> reveal(neighbour.getPosition()));
         }
 
-        if (grid.getCells().stream().allMatch(Cell::isRevealed)) {
+        if (grid.areAllEmptyCellsRevealed()) {
             return RevealResult.WIN;
         }
 

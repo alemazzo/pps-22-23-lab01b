@@ -18,14 +18,14 @@ public class CellFactoryTest {
     @Test
     void testCellFactoryShouldCreateMineCell() {
         final var position = new Position(0, 0);
-        Cell cell = factory.createMineCell(position);
+        Cell cell = factory.createMine(position);
         assertEquals(CellType.MINE, cell.getType());
     }
 
     @Test
     void testCellFactoryShouldCreateEmptyCell() {
         final var position = new Position(0, 0);
-        Cell cell = factory.createEmptyCell(position);
+        Cell cell = factory.createEmpty(position);
         assertEquals(CellType.EMPTY, cell.getType());
     }
 

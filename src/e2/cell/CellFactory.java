@@ -13,7 +13,7 @@ public interface CellFactory {
      * @param position the position of the cell.
      * @return the new cell.
      */
-    Cell createMineCell(Position position);
+    Cell createMine(Position position);
 
     /**
      * Creates a new empty cell.
@@ -21,6 +21,6 @@ public interface CellFactory {
      * @param position the position of the cell.
      * @return the new cell.
      */
-    Cell createEmptyCell(Position position);
-    
+    Cell createEmpty(Position position);
+
 }

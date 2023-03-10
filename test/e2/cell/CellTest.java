@@ -18,21 +18,21 @@ public class CellTest {
     @Test
     void testCellShouldHavePosition() {
         final var cellPosition = new Position(0, 0);
-        final Cell cell = this.factory.createEmptyCell(cellPosition);
+        final Cell cell = this.factory.createEmpty(cellPosition);
         assertEquals(cellPosition, cell.getPosition());
     }
 
     @Test
     void testCellShouldHaveRevealedState() {
         final var cellPosition = new Position(0, 0);
-        final Cell cell = this.factory.createEmptyCell(cellPosition);
+        final Cell cell = this.factory.createEmpty(cellPosition);
         assertFalse(cell.isRevealed());
     }
 
     @Test
     void testCellShouldBeRevealable() {
         final var cellPosition = new Position(0, 0);
-        final Cell cell = this.factory.createEmptyCell(cellPosition);
+        final Cell cell = this.factory.createEmpty(cellPosition);
         cell.reveal();
         assertTrue(cell.isRevealed());
     }
@@ -40,7 +40,7 @@ public class CellTest {
     @Test
     void testCellShouldBeRevealableOnlyOnce() {
         final var cellPosition = new Position(0, 0);
-        final Cell cell = this.factory.createEmptyCell(cellPosition);
+        final Cell cell = this.factory.createEmpty(cellPosition);
         cell.reveal();
         assertTrue(cell.isRevealed());
         cell.reveal();
@@ -50,14 +50,14 @@ public class CellTest {
     @Test
     void testCellShouldHaveFlaggedState() {
         final var cellPosition = new Position(0, 0);
-        final Cell cell = this.factory.createEmptyCell(cellPosition);
+        final Cell cell = this.factory.createEmpty(cellPosition);
         assertFalse(cell.isFlagged());
     }
 
     @Test
     void testCellShouldBeFlaggable() {
         final var cellPosition = new Position(0, 0);
-        final Cell cell = this.factory.createEmptyCell(cellPosition);
+        final Cell cell = this.factory.createEmpty(cellPosition);
         cell.flag();
         assertTrue(cell.isFlagged());
     }
@@ -65,7 +65,7 @@ public class CellTest {
     @Test
     void testCellCanBeUnflaggedByCallingFlagMultipleTimes() {
         final var cellPosition = new Position(0, 0);
-        final Cell cell = this.factory.createEmptyCell(cellPosition);
+        final Cell cell = this.factory.createEmpty(cellPosition);
         cell.flag();
         assertTrue(cell.isFlagged());
         cell.flag();
@@ -75,14 +75,14 @@ public class CellTest {
     @Test
     void testCellShouldHaveType() {
         final var cellPosition = new Position(0, 0);
-        final Cell cell = this.factory.createEmptyCell(cellPosition);
+        final Cell cell = this.factory.createEmpty(cellPosition);
         assertEquals(CellType.EMPTY, cell.getType());
     }
 
     @Test
     void testCellCanBeMine() {
         final var cellPosition = new Position(0, 0);
-        final Cell cell = this.factory.createMineCell(cellPosition);
+        final Cell cell = this.factory.createMine(cellPosition);
         assertEquals(CellType.MINE, cell.getType());
     }
 

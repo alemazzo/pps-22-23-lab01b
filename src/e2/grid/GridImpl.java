@@ -4,8 +4,8 @@ import e2.Position;
 import e2.cell.Cell;
 import e2.cell.CellFactory;
 import e2.cell.CellFactoryImpl;
+import e2.cell.CellType;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -25,14 +25,14 @@ public class GridImpl implements Grid {
         build(size);
         for (Position position : minesPositions) {
             this.cells.removeIf(cell -> cell.getPosition().equals(position));
-            this.cells.add(this.cellFactory.createMineCell(position));
+            this.cells.add(this.cellFactory.createMine(position));
         }
     }
 
     private void build(int size) {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                this.cells.add(this.cellFactory.createEmptyCell(new Position(i, j)));
+                this.cells.add(this.cellFactory.createEmpty(new Position(i, j)));
             }
         }
     }
@@ -65,8 +65,10 @@ public class GridImpl implements Grid {
     }
 
     @Override
-    public Set<Cell> getCells() {
-        return Collections.unmodifiableSet(this.cells);
+    public boolean areAllEmptyCellsRevealed() {
+        return this.cells.stream()
+                .filter(cell -> cell.getType().equals(CellType.EMPTY))
+                .allMatch(Cell::isRevealed);
     }
 
 }
