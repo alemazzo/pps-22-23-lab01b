@@ -27,6 +27,10 @@ public interface Grid {
      * @return the neighbours of the cell at the given position.
      */
     Set<Cell> getNeighboursOfCellAt(Position position);
-    
+
+    /**
+     * @return true if all empty cells have been revealed, false otherwise.
+     */
     boolean areAllEmptyCellsRevealed();
+    
 }
