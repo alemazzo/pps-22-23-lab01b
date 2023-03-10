@@ -24,7 +24,7 @@ public class GridImpl implements Grid {
     public GridImpl(int size, Set<Position> minesPositions) {
         build(size);
         for (Position position : minesPositions) {
-            this.cells.removeIf(cell -> cell.getCellPosition().equals(position));
+            this.cells.removeIf(cell -> cell.getPosition().equals(position));
             this.cells.add(this.cellFactory.createMineCell(position));
         }
     }
@@ -47,7 +47,7 @@ public class GridImpl implements Grid {
     @Override
     public Optional<Cell> getCellAt(Position position) {
         return this.cells.stream()
-                .filter(cell -> cell.getCellPosition().equals(position))
+                .filter(cell -> cell.getPosition().equals(position))
                 .findFirst();
     }
 
@@ -60,7 +60,7 @@ public class GridImpl implements Grid {
     @Override
     public Set<Cell> getNeighboursOfCellAt(Position position) {
         return this.cells.stream()
-                .filter(cell -> areNeighbours(position, cell.getCellPosition()))
+                .filter(cell -> areNeighbours(position, cell.getPosition()))
                 .collect(Collectors.toSet());
     }
 

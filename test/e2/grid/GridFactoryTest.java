@@ -45,7 +45,7 @@ public class GridFactoryTest {
         final Set<Cell> cells = getCellsFromGrid(grid);
         assertEquals(GRID_SIZE * GRID_SIZE, cells.size());
         for (Cell cell : cells) {
-            assertEquals(CellType.EMPTY, cell.getCellType());
+            assertEquals(CellType.EMPTY, cell.getType());
         }
     }
 
@@ -56,7 +56,7 @@ public class GridFactoryTest {
         final Set<Cell> cells = getCellsFromGrid(grid);
 
         int minesInGrid = cells.stream()
-                .filter(cell -> cell.getCellType() == CellType.MINE)
+                .filter(cell -> cell.getType() == CellType.MINE)
                 .mapToInt(cell -> 1)
                 .sum();
         assertEquals(minesCount, minesInGrid);
@@ -76,7 +76,7 @@ public class GridFactoryTest {
         final Set<Cell> cells = getCellsFromGrid(grid);
 
         int minesInGrid = cells.stream()
-                .filter(cell -> cell.getCellType() == CellType.MINE)
+                .filter(cell -> cell.getType() == CellType.MINE)
                 .mapToInt(cell -> 1)
                 .sum();
         assertEquals(minesCount, minesInGrid);
@@ -88,10 +88,10 @@ public class GridFactoryTest {
         final Grid grid = factory.createGridWithRandomMines(GRID_SIZE, maxMines);
         final Set<Cell> cells = getCellsFromGrid(grid);
         final int minesInGrid = cells.stream()
-                .filter(cell -> cell.getCellType() == CellType.MINE)
+                .filter(cell -> cell.getType() == CellType.MINE)
                 .mapToInt(cell -> 1)
                 .sum();
         assertEquals(maxMines, minesInGrid);
     }
-    
+
 }

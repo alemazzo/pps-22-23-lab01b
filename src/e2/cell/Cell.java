@@ -10,12 +10,12 @@ public interface Cell {
     /**
      * @return the type of this cell.
      */
-    CellType getCellType();
-    
+    CellType getType();
+
     /**
      * @return the position of this cell.
      */
-    Position getCellPosition();
+    Position getPosition();
 
     /**
      * @return true if this cell is revealed, false otherwise.

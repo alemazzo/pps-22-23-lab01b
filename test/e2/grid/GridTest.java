@@ -26,7 +26,7 @@ public class GridTest {
         final var position = new Position(0, 0);
         final Optional<Cell> cell = grid.getCellAt(position);
         assertTrue(cell.isPresent());
-        assertEquals(cell.get().getCellPosition(), position);
+        assertEquals(cell.get().getPosition(), position);
     }
 
     @Test
@@ -43,7 +43,7 @@ public class GridTest {
         );
 
         for (Cell neighbour : neighbours) {
-            assertTrue(expectedNeighbours.contains(neighbour.getCellPosition()));
+            assertTrue(expectedNeighbours.contains(neighbour.getPosition()));
         }
     }
 

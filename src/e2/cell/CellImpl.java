@@ -4,31 +4,31 @@ import e2.Position;
 
 public class CellImpl implements Cell {
 
-    private final CellType cellType;
+    private final CellType type;
 
-    private final Position cellPosition;
+    private final Position position;
 
     private boolean flagged = false;
-    
+
     private boolean revealed = false;
 
     public CellImpl(Position cellPosition) {
         this(cellPosition, CellType.EMPTY);
     }
 
-    public CellImpl(Position cellPosition, CellType cellType) {
-        this.cellPosition = cellPosition;
-        this.cellType = cellType;
+    public CellImpl(Position position, CellType type) {
+        this.position = position;
+        this.type = type;
     }
 
     @Override
-    public CellType getCellType() {
-        return this.cellType;
+    public CellType getType() {
+        return this.type;
     }
 
     @Override
-    public Position getCellPosition() {
-        return cellPosition;
+    public Position getPosition() {
+        return position;
     }
 
     @Override

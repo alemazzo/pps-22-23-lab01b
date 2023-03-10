@@ -19,7 +19,7 @@ public class CellTest {
     void testCellShouldHavePosition() {
         final var cellPosition = new Position(0, 0);
         final Cell cell = this.factory.createEmptyCell(cellPosition);
-        assertEquals(cellPosition, cell.getCellPosition());
+        assertEquals(cellPosition, cell.getPosition());
     }
 
     @Test
@@ -76,14 +76,14 @@ public class CellTest {
     void testCellShouldHaveType() {
         final var cellPosition = new Position(0, 0);
         final Cell cell = this.factory.createEmptyCell(cellPosition);
-        assertEquals(CellType.EMPTY, cell.getCellType());
+        assertEquals(CellType.EMPTY, cell.getType());
     }
 
     @Test
     void testCellCanBeMine() {
         final var cellPosition = new Position(0, 0);
         final Cell cell = this.factory.createMineCell(cellPosition);
-        assertEquals(CellType.MINE, cell.getCellType());
+        assertEquals(CellType.MINE, cell.getType());
     }
 
 }

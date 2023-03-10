@@ -33,7 +33,7 @@ public class LogicsImpl implements Logics {
         final Cell cell = optCell.get();
         cell.reveal();
 
-        if (cell.getCellType() == CellType.MINE) {
+        if (cell.getType() == CellType.MINE) {
             return RevealResult.LOSE;
         }
 
@@ -43,13 +43,13 @@ public class LogicsImpl implements Logics {
 
         final Set<Cell> neighbours = grid.getNeighboursOfCellAt(position);
         final long numMines = neighbours.stream()
-                .filter(neighbour -> neighbour.getCellType() == CellType.MINE)
+                .filter(neighbour -> neighbour.getType() == CellType.MINE)
                 .count();
 
         if (numMines == 0) {
             neighbours.stream()
                     .filter(neighbour -> !neighbour.isRevealed())
-                    .forEach(neighbour -> reveal(neighbour.getCellPosition()));
+                    .forEach(neighbour -> reveal(neighbour.getPosition()));
         }
 
         if (grid.getCells().stream().allMatch(Cell::isRevealed)) {
@@ -68,7 +68,7 @@ public class LogicsImpl implements Logics {
     @Override
     public CellStatus getCellStatus(Position position) {
         final var minesAround = (int) grid.getNeighboursOfCellAt(position).stream()
-                .filter(cell -> cell.getCellType() == CellType.MINE)
+                .filter(cell -> cell.getType() == CellType.MINE)
                 .count();
         return CellStatus.fromCell(this.grid.getCellAt(position).orElseThrow(), minesAround);
     }
