@@ -77,8 +77,11 @@ public class GUI extends JFrame {
             // if this button is a mine, draw it "*"
             // disable the button
             final var position = new Position(entry.getValue().getX(), entry.getValue().getY());
-            
-
+            final CellStatus cellStatus = logics.getCellStatus(position);
+            if (cellStatus.mined()) {
+                entry.getKey().setText("*");
+            }
+            entry.getKey().setEnabled(false);
         }
     }
 
@@ -87,6 +90,21 @@ public class GUI extends JFrame {
             // call the logic here
             // if this button is a cell with counter, put the number
             // if this button has a flag, put the flag
+            final var position = new Position(entry.getValue().getX(), entry.getValue().getY());
+            final CellStatus cellStatus = logics.getCellStatus(position);
+
+            if (cellStatus.revealed()) {
+                if (cellStatus.mined()) {
+                    entry.getKey().setText("*");
+                } else {
+                    
+                }
+                entry.getKey().setEnabled(false);
+            } else if (cellStatus.flagged()) {
+                entry.getKey().setText("F");
+            } else {
+                entry.getKey().setText(" ");
+            }
         }
     }
 

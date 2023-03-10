@@ -66,6 +66,9 @@ public class LogicsImpl implements Logics {
 
     @Override
     public CellStatus getCellStatus(Position position) {
-        return CellStatus.fromCell(this.grid.getCellAt(position).orElseThrow());
+        final var minesAround = (int) grid.getNeighboursOfCellAt(position).stream()
+                .filter(cell -> cell.getCellType() == CellType.MINE)
+                .count();
+        return CellStatus.fromCell(this.grid.getCellAt(position).orElseThrow(), minesAround);
     }
 }

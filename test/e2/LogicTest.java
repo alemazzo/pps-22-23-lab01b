@@ -31,7 +31,7 @@ public class LogicTest {
         );
         logics = new LogicsImpl(BOARD_SIZE, minesPositions);
         final var result = logics.getCellStatus(new Position(0, 2));
-        final var expectedStatus = new CellStatus(false, false, false);
+        final var expectedStatus = new CellStatus(false, false, false, 1);
         assertEquals(expectedStatus, result);
     }
 
@@ -44,7 +44,7 @@ public class LogicTest {
         logics = new LogicsImpl(BOARD_SIZE, minesPositions);
         logics.toggleFlag(new Position(0, 2));
         final var result = logics.getCellStatus(new Position(0, 2));
-        final var expectedStatus = new CellStatus(false, true, false);
+        final var expectedStatus = new CellStatus(false, true, false, 1);
         assertEquals(expectedStatus, result);
     }
 
