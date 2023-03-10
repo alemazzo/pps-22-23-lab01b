@@ -5,6 +5,7 @@ import e2.cell.Cell;
 import e2.cell.CellFactory;
 import e2.cell.CellFactoryImpl;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -61,6 +62,11 @@ public class GridImpl implements Grid {
         return this.cells.stream()
                 .filter(cell -> areNeighbours(position, cell.getCellPosition()))
                 .collect(Collectors.toSet());
+    }
+
+    @Override
+    public Set<Cell> getCells() {
+        return Collections.unmodifiableSet(this.cells);
     }
 
 }

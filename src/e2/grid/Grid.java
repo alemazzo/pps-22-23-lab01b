@@ -28,4 +28,7 @@ public interface Grid {
      */
     Set<Cell> getNeighboursOfCellAt(Position position);
 
+
+    Set<Cell> getCells();
+
 }

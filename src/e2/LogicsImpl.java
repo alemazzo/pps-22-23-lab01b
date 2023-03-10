@@ -29,12 +29,33 @@ public class LogicsImpl implements Logics {
         if (optCell.isEmpty()) {
             throw new IllegalArgumentException("Invalid position");
         }
-
         final Cell cell = optCell.get();
-        if (cell.getCellType().equals(CellType.MINE)) {
+        cell.reveal();
+
+        if (cell.getCellType() == CellType.MINE) {
             return RevealResult.LOSE;
-        } else {
-            return RevealResult.EMPTY;
         }
+
+        if (grid.getCells().stream().allMatch(Cell::isRevealed)) {
+            return RevealResult.WIN;
+        }
+
+        final Set<Cell> neighbours = grid.getNeighboursOfCellAt(position);
+        final long numMines = neighbours.stream()
+                .filter(neighbour -> neighbour.getCellType() == CellType.MINE)
+                .count();
+
+        if (numMines == 0) {
+            neighbours.stream()
+                    .filter(neighbour -> !neighbour.isRevealed())
+                    .forEach(neighbour -> reveal(neighbour.getCellPosition()));
+        }
+
+        if (grid.getCells().stream().allMatch(Cell::isRevealed)) {
+            return RevealResult.WIN;
+        }
+
+        return RevealResult.EMPTY;
+
     }
 }

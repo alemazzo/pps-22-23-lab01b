@@ -23,4 +23,12 @@ public class LogicTest {
         assertEquals(RevealResult.EMPTY, result);
     }
 
+    @Test
+    void testRevealOnEmptyBoardShouldReturnResultWin() {
+        final var numMines = 0;
+        logics = new LogicsImpl(BOARD_SIZE, numMines);
+        final var result = logics.reveal(new Position(0, 0));
+        assertEquals(RevealResult.WIN, result);
+    }
+
 }
