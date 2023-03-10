@@ -97,7 +97,7 @@ public class GUI extends JFrame {
                 if (cellStatus.mined()) {
                     entry.getKey().setText("*");
                 } else {
-                    
+                    entry.getKey().setText(String.valueOf(cellStatus.minesAround()));
                 }
                 entry.getKey().setEnabled(false);
             } else if (cellStatus.flagged()) {
