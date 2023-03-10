@@ -1,6 +1,7 @@
 package e2;
 
 import e2.cell.Cell;
+import e2.cell.CellStatus;
 import e2.cell.CellType;
 import e2.grid.Grid;
 import e2.grid.GridFactory;

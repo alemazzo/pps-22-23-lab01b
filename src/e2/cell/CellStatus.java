@@ -1,7 +1,4 @@
-package e2;
-
-import e2.cell.Cell;
-import e2.cell.CellType;
+package e2.cell;
 
 public record CellStatus(boolean revealed, boolean flagged, boolean mined, int minesAround) {
 

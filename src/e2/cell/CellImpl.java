@@ -7,7 +7,9 @@ public class CellImpl implements Cell {
     private final CellType cellType;
 
     private final Position cellPosition;
+
     private boolean flagged = false;
+    
     private boolean revealed = false;
 
     public CellImpl(Position cellPosition) {

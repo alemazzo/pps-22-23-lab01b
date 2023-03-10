@@ -1,5 +1,7 @@
 package e2;
 
+import e2.cell.CellStatus;
+
 import javax.swing.*;
 import javax.swing.event.MouseInputAdapter;
 import javax.swing.event.MouseInputListener;

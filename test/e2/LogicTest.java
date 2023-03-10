@@ -1,5 +1,6 @@
 package e2;
 
+import e2.cell.CellStatus;
 import org.junit.jupiter.api.Test;
 
 import java.util.Set;
