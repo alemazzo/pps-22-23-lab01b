@@ -24,6 +24,32 @@ public class LogicTest {
     }
 
     @Test
+    void testLogicShouldExposeGetCellStatus() {
+        final var minesPositions = Set.of(
+                new Position(0, 0),
+                new Position(0, 1)
+        );
+        logics = new LogicsImpl(BOARD_SIZE, minesPositions);
+        final var result = logics.getCellStatus(new Position(0, 2));
+        final var expectedStatus = new CellStatus(false, false, false);
+        assertEquals(expectedStatus, result);
+    }
+
+    @Test
+    void testLogicShouldExposeToggleFlag() {
+        final var minesPositions = Set.of(
+                new Position(0, 0),
+                new Position(0, 1)
+        );
+        logics = new LogicsImpl(BOARD_SIZE, minesPositions);
+        logics.toggleFlag(new Position(0, 2));
+        final var result = logics.getCellStatus(new Position(0, 2));
+        final var expectedStatus = new CellStatus(false, true, false);
+        assertEquals(expectedStatus, result);
+    }
+
+
+    @Test
     void testRevealOnEmptyBoardShouldReturnResultWin() {
         final var numMines = 0;
         logics = new LogicsImpl(BOARD_SIZE, numMines);
@@ -41,5 +67,6 @@ public class LogicTest {
         final var result = logics.reveal(new Position(0, 0));
         assertEquals(RevealResult.LOSE, result);
     }
+
 
 }

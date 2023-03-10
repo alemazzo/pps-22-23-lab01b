@@ -50,6 +50,8 @@ public class GUI extends JFrame {
                 if (bt.isEnabled()) {
                     final Pair<Integer, Integer> pos = buttons.get(bt);
                     // call the logic here to put/remove a flag
+                    final var position = new Position(pos.getX(), pos.getY());
+                    logics.toggleFlag(position);
                 }
                 drawBoard();
             }
@@ -74,6 +76,9 @@ public class GUI extends JFrame {
             // call the logic here
             // if this button is a mine, draw it "*"
             // disable the button
+            final var position = new Position(entry.getValue().getX(), entry.getValue().getY());
+            
+
         }
     }
 

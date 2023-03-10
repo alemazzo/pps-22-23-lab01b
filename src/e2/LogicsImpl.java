@@ -58,4 +58,14 @@ public class LogicsImpl implements Logics {
         return RevealResult.EMPTY;
 
     }
+
+    @Override
+    public void toggleFlag(Position position) {
+        this.grid.getCellAt(position).ifPresent(Cell::flag);
+    }
+
+    @Override
+    public CellStatus getCellStatus(Position position) {
+        return CellStatus.fromCell(this.grid.getCellAt(position).orElseThrow());
+    }
 }
